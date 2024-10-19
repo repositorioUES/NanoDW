@@ -1,0 +1,1339 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/9/2024 5:21:39 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAGGER"
+  DTS:CreatorName="JAGGER\Christian"
+  DTS:DTSID="{31787E12-A727-418B-89A8-75846BCC7477}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="DimPromocion"
+  DTS:PackageType="5"
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{1A6916F7-0F6C-4DEC-A419-4C44594B317B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.magento.root]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{96933984-DA59-4DF5-9855-F79AB3872C1B}"
+      DTS:ObjectName="localhost.magento.root">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADigypPzddok6jmPgb1zrSayzzqdAOFf38MBLAaHe8hSQAAAAAOgAAAAAIAACAAAACj7VT2PqFR0p2hnHAyiUcJllQfDZ2YAWg/uOGXpx2z0BAAAAD268+EpdT1DHWSjRrNBpphQAAAAOkCPUrIyM8Zn4hJ37Xgx+h22O63+QUa/W+1RPafPOULXwnUjIPWOJ4cq7IL4jpz5YFthOIR8/xZ63j6+tovopI</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[magento]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{52EE2201-3D27-43C2-91FB-E9510D438B2D}"
+      DTS:ObjectName="magento">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACFP7PbrQjrDyM2ruTHVIcsmoJENRG8uDS6T9UkZV5YEAAAAAAOgAAAAAIAACAAAAAxQT1U+qsMAROoFWSCTiaPaRVRHdy5HZgKPAVAkPe9ZxAAAAClkD6/NMPuS9Qeg9fxkbzOQAAAADiJMXYkxFZpNROHT6s5mb+lmFc1DNKmvnVZv0cluz11HUbPO5EGRnjx3ORd/zgJ92DZ5WnpHIf28OkIoW9HNJQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NanoDW]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{92F16903-4C66-4DC6-AE13-DE95DAF38D5C}"
+      DTS:ObjectName="NanoDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-DimPromocion-{92F16903-4C66-4DC6-AE13-DE95DAF38D5C}localhost.NanoDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB.NANODW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5C0EF4E5-873F-436F-B956-2114C4BD05AB}"
+      DTS:ObjectName="OLEDB.NANODW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-DimPromocion-{5C0EF4E5-873F-436F-B956-2114C4BD05AB}localhost.NanoDW1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete DimPromocion en NanoDW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{5930C0C3-D13E-4E08-AC4E-3BB381D3635E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete DimPromocion en NanoDW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92F16903-4C66-4DC6-AE13-DE95DAF38D5C}"
+          SQLTask:SqlStatementSource="delete DimPromocion;&#xA;&#xA;dbcc checkident('DimPromocion',RESEED,0);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fila Bolsón para Ordenes sin promocion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{52897B60-CFA0-4C84-9765-1C041D84CC44}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fila Bolsón para Ordenes sin promocion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5C0EF4E5-873F-436F-B956-2114C4BD05AB}"
+          SQLTask:SqlStatementSource="&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM DimPromocion&#xA;    WHERE PromocionID = 1&#xA;)&#xA;BEGIN&#xA;    INSERT INTO DimPromocion (PromocionID, nombre_promocion, descripcion, tipo_promocion, cantidad_descuento, cupon)&#xA;    VALUES (1, 'Sin Promocion', 'Sin Promocion', 'Sin Promocion', 00.00, 'Sin Promocion');&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado de DimPromocion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B256705D-3002-47E3-95B4-7AA6D8DDC57D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado de DimPromocion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Actualizacion de DimPromocion"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC ActualizarPromocion ?,?,?,?,?,?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB.NANODW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB.NANODW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].Columns[PromocionKey]"
+                      cachedDataType="i4"
+                      cachedName="PromocionKey"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@PromocionKey]"
+                      lineageId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Match Output].Columns[PromocionKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].Columns[newnombre_promocion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newnombre_promocion"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@nombre_promocion]"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newnombre_promocion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].Columns[newdescripcion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newdescripcion"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@descripcion]"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newdescripcion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].Columns[newtipo_promocion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="newtipo_promocion"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@tipo_promocion]"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newtipo_promocion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].Columns[newcupon]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newcupon"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@cupon]"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newcupon]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].Columns[cantidad_descuento]"
+                      cachedDataType="numeric"
+                      cachedName="cantidad_descuento"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@cantidad_descuento]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@PromocionKey]"
+                      dataType="i4"
+                      name="@PromocionKey">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@nombre_promocion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@nombre_promocion">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@descripcion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@descripcion">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@tipo_promocion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="@tipo_promocion">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@cantidad_descuento]"
+                      dataType="numeric"
+                      name="@cantidad_descuento"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input].ExternalColumns[@cupon]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@cupon">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de promocion si existe"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimPromocion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimPromocion]) [refTable]
+where [refTable].[PromocionID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PromocionKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PromocionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_promocion" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="descripcion" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="tipo_promocion" dataType="DT_STR" length="32" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="cantidad_descuento" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="cupon" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newPromocionID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB.NANODW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB.NANODW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Inputs[Lookup Input].Columns[newPromocionID]"
+                      cachedDataType="i4"
+                      cachedName="newPromocionID"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newPromocionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PromocionID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Match Output].Columns[PromocionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Match Output].Columns[PromocionKey]"
+                      name="PromocionKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PromocionKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimPromocion\Conversion de PromocionID"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de PromocionID"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input].Columns[PromocionID]"
+                      cachedDataType="i8"
+                      cachedName="PromocionID"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input].Columns[nombre_promocion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_promocion"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_promocion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descripcion"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input].Columns[tipo_promocion]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="tipo_promocion"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_promocion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input].Columns[cupon]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cupon"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cupon]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newPromocionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newPromocionID]"
+                      name="newPromocionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newnombre_promocion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newnombre_promocion]"
+                      name="newnombre_promocion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_promocion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newdescripcion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newdescripcion]"
+                      name="newdescripcion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[descripcion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newtipo_promocion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="32"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newtipo_promocion]"
+                      name="newtipo_promocion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_promocion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newcupon]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newcupon]"
+                      name="newcupon"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cupon]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimPromocion\Insercion en DimPromocion"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Insercion en DimPromocion"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimPromocion"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[NanoDW]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].Columns[nombre_promocion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_promocion"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_promocion]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_promocion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descripcion"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].Columns[tipo_promocion]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="tipo_promocion"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[tipo_promocion]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_promocion]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].Columns[cantidad_descuento]"
+                      cachedDataType="numeric"
+                      cachedName="cantidad_descuento"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad_descuento]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].Columns[cupon]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cupon"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[cupon]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cupon]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].Columns[newPromocionID]"
+                      cachedDataType="i4"
+                      cachedName="newPromocionID"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[PromocionID]"
+                      lineageId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output].Columns[newPromocionID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[PromocionKey]"
+                      dataType="i4"
+                      name="PromocionKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[PromocionID]"
+                      dataType="i4"
+                      name="PromocionID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_promocion]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre_promocion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[tipo_promocion]"
+                      dataType="wstr"
+                      length="32"
+                      name="tipo_promocion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad_descuento]"
+                      dataType="numeric"
+                      name="cantidad_descuento"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET].ExternalColumns[cupon]"
+                      dataType="wstr"
+                      length="255"
+                      name="cupon" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimPromocion\Magento"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Magento"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	CAST(promocion.rule_id+1 AS SIGNED) AS PromocionID,
+	promocion.name AS nombre_promocion,
+	CAST(promocion.description AS CHAR(255)) AS descripcion,
+	CASE promocion.simple_action
+		WHEN 'by_percent' then 'Porcentaje'
+		WHEN 'cart_fixed' then 'Cantidad'
+		ELSE 'No Definido' END as tipo_promocion,
+	promocion.discount_amount AS cantidad_descuento,
+	IFNULL(cupon.code,'Sin codigo') AS cupon
+FROM magento.salesrule promocion
+	LEFT JOIN magento.salesrule_coupon cupon ON promocion.rule_id= cupon.rule_id
+;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimPromocion\Magento.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.magento.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.magento.root]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[PromocionID]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]"
+                      name="PromocionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_promocion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre_promocion]"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_promocion]"
+                      name="nombre_promocion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[descripcion]"
+                      name="descripcion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_promocion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[tipo_promocion]"
+                      length="11"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_promocion]"
+                      name="tipo_promocion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad_descuento]"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]"
+                      name="cantidad_descuento"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cupon]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[cupon]"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].Columns[cupon]"
+                      name="cupon"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[PromocionID]"
+                      dataType="i8"
+                      name="PromocionID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre_promocion]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre_promocion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[tipo_promocion]"
+                      dataType="wstr"
+                      length="11"
+                      name="tipo_promocion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad_descuento]"
+                      dataType="numeric"
+                      name="cantidad_descuento"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[cupon]"
+                      dataType="wstr"
+                      length="255"
+                      name="cupon" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[PromocionID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[PromocionID]"
+                      name="PromocionID" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[nombre_promocion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[nombre_promocion]"
+                      name="nombre_promocion" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[descripcion]"
+                      name="descripcion" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[tipo_promocion]"
+                      dataType="wstr"
+                      length="11"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[tipo_promocion]"
+                      name="tipo_promocion" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[cantidad_descuento]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[cantidad_descuento]"
+                      name="cantidad_descuento"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[cupon]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[cupon]"
+                      name="cupon" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado de DimPromocion.Paths[Data Conversion Output]"
+              endId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado de DimPromocion\Conversion de PromocionID.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado de DimPromocion.Paths[Lookup Match Output]"
+              endId="Package\Llenado de DimPromocion\Actualizacion de DimPromocion.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de DimPromocion.Paths[Lookup No Match Output]"
+              endId="Package\Llenado de DimPromocion\Insercion en DimPromocion.Inputs[Entrada de destino de ADO NET]"
+              name="Lookup No Match Output"
+              startId="Package\Llenado de DimPromocion\Busqueda de promocion si existe.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Llenado de DimPromocion.Paths[Salida de origen de ADO NET]"
+              endId="Package\Llenado de DimPromocion\Conversion de PromocionID.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Llenado de DimPromocion\Magento.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{DAD9CCF9-5ED7-475A-BBBC-78DED64C11A6}"
+      DTS:From="Package\Delete DimPromocion en NanoDW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Fila Bolsón para Ordenes sin promocion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{27047F6B-6FA3-4509-97F6-9D32A59F4852}"
+      DTS:From="Package\Fila Bolsón para Ordenes sin promocion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Llenado de DimPromocion" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="244,42.6666666666667"
+          Id="Package\Delete DimPromocion en NanoDW"
+          TopLeft="221.249990109354,42.0789469064024" />
+        <NodeLayout
+          Size="269.333333333334,42.6666666666667"
+          Id="Package\Fila Bolsón para Ordenes sin promocion"
+          TopLeft="210.62499058433,121.105261828183" />
+        <NodeLayout
+          Size="205.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimPromocion"
+          TopLeft="246.249988991769,198.078945193552" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="344.270823680175,84.7456135730691">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.3596482551139"
+              Start="0,0"
+              End="0,28.8596482551139">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.8596482551139" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="347.104156454716,163.77192849485">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.3070166987023"
+              Start="0,0"
+              End="0,26.8070166987023">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8070166987023" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Llenado de DimPromocion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\Llenado de DimPromocion\Busqueda de promocion si existe"
+          TopLeft="231.24998966232,112.894735602543" />
+        <NodeLayout
+          Size="210.666666666667,42.6666666666667"
+          Id="Package\Llenado de DimPromocion\Insercion en DimPromocion"
+          TopLeft="99.8958288676413,200.815787268766" />
+        <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimPromocion\Conversion de PromocionID"
+          TopLeft="238.124989354983,21.2105260829021" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimPromocion\Magento"
+          TopLeft="45.2083313123637,19.1578945264924" />
+        <NodeLayout
+          Size="230.666666666667,42.6666666666667"
+          Id="Package\Llenado de DimPromocion\Actualizacion de DimPromocion"
+          TopLeft="414.444425917335,201.309939310124" />
+        <EdgeLayout
+          Id="Package\Llenado de DimPromocion.Paths[Salida de origen de ADO NET]"
+          TopLeft="166.541664645697,41.5175436380306">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71.5833247092859,0"
+              Start="0,0"
+              End="64.0833247092859,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.0833247092859,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimPromocion.Paths[Lookup No Match Output]"
+          TopLeft="349.24998966232,155.56140226921">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-144.020827461345,45.2543849995563"
+              Start="0,0"
+              End="-144.020827461345,37.7543849995563">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6271924997781" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6271924997781"
+                    Point2="0,22.6271924997781"
+                    Point3="-4,22.6271924997781" />
+                  <mssgle:LineSegment
+                    End="-140.020827461345,22.6271924997781" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-140.020827461345,22.6271924997781"
+                    Point2="-144.020827461345,22.6271924997781"
+                    Point3="-144.020827461345,26.6271924997781" />
+                  <mssgle:LineSegment
+                    End="-144.020827461345,37.7543849995563" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.816800449422,27.6271924997781,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimPromocion.Paths[Lookup Match Output]"
+          TopLeft="387.24998966232,155.56140226921">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="142.527769588348,45.7485370409144"
+              Start="0,0"
+              End="142.527769588348,38.2485370409144">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4842573902684" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4842573902684"
+                    Point2="0,18.4842573902684"
+                    Point3="4,18.4842573902684" />
+                  <mssgle:LineSegment
+                    End="138.527769588348,18.4842573902684" />
+                  <mssgle:CubicBezierSegment
+                    Point1="138.527769588348,18.4842573902684"
+                    Point2="142.527769588348,18.4842573902684"
+                    Point3="142.527769588348,22.4842573902684" />
+                  <mssgle:LineSegment
+                    End="142.527769588348,38.2485370409144" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="23.072498075424,23.4842573902684,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimPromocion.Paths[Data Conversion Output]"
+          TopLeft="347.020822841985,63.8771927495687">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.0175428529746"
+              Start="0,0"
+              End="0,41.5175428529746">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5175428529746" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimPromocion\Insercion en DimPromocion">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimPromocion\Busqueda de promocion si existe">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimPromocion]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimPromocion\Magento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

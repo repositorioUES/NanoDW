@@ -1,0 +1,1568 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/7/2024 10:14:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAGGER"
+  DTS:CreatorName="JAGGER\Christian"
+  DTS:DTSID="{0BB336D3-9232-409D-B5AE-A5F4702AFD54}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="DimCliente"
+  DTS:PackageType="5"
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{230B0F57-CC54-4893-BEFF-AF0CE791C73E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[magento]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{AB99F410-F9FE-4B72-B3EE-42589124F5C9}"
+      DTS:ObjectName="magento">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADuWq3kO7ylNGQp6gPa+APIQoPGyrq2Js5LowLHo3Y+HAAAAAAOgAAAAAIAACAAAAAuwXqk4ovpzgf/cPAIUFywpLLcc9e6QKVlLA/HIB62jhAAAABxkN+8kLRScbNfgjYxSQvTQAAAANDM5axV7xa1Y8cBkfBSn5ToP3CutQKZAYshYooG3ZKRX7sR4v1BlGmoR967IwPV/MXljOs6zUmut+BPBsCByr0</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NanoDW]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{631570A7-4E58-4D9B-9E2A-31014D080CB8}"
+      DTS:ObjectName="NanoDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-DimCliente-{631570A7-4E58-4D9B-9E2A-31014D080CB8}localhost.NanoDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB.NANODW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E9C5770E-AECE-4F10-9A25-7B19051E2012}"
+      DTS:ObjectName="OLEDB.NANODW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-DimCliente-{E9C5770E-AECE-4F10-9A25-7B19051E2012}localhost.NanoDW1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete DimCliente en NanoDW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{2B42F756-1F24-43CF-A9FE-445931BBA4A2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete DimCliente en NanoDW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{631570A7-4E58-4D9B-9E2A-31014D080CB8}"
+          SQLTask:SqlStatementSource="delete DimCliente;&#xA;&#xA;dbcc checkident('DimCliente',RESEED,0);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Fila bolsón para Clientes no registrados"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{F9B16EBE-68A9-4E3A-8901-7335B49C3C63}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fila bolsón para Clientes no registrados"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{631570A7-4E58-4D9B-9E2A-31014D080CB8}"
+          SQLTask:SqlStatementSource="&#xA;&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM DimCliente&#xA;    WHERE ClienteID = 1&#xA;)&#xA;BEGIN&#xA;    INSERT INTO DimCliente(ClienteID, nombre_completo,email,genero,telefono,departamento,municipio,direccion)&#xA;    VALUES (1, 'Cliente Huesped','No definido','No definido','No definido','No definido','No definido','No definido');&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado de DimCliente"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D04C186B-4EA9-4270-957B-6C9651C916C4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado de DimCliente"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado de DimCliente\Actualizacion de DimCliente"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Actualizacion de DimCliente"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC ActualizarCliente ?,?,?,?,?,?,?,?,?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB.NANODW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB.NANODW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[ClienteKey]"
+                      cachedDataType="i4"
+                      cachedName="ClienteKey"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@ClienteKey]"
+                      lineageId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[ClienteKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[ClienteID]"
+                      cachedDataType="i8"
+                      cachedName="ClienteID"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@ClienteID]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newemail]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newemail"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@email]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newemail]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newgenero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="newgenero"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@genero]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newgenero]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newnombre_completo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="newnombre_completo"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@nombre_completo]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newnombre_completo]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newtelefono]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newtelefono"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@telefono]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newtelefono]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newdepartamento]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newdepartamento"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@departamento]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newdepartamento]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newmunicipio]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newmunicipio"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@municipio]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newmunicipio]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].Columns[newdireccion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="newdireccion"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@direccion]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newdireccion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@ClienteKey]"
+                      dataType="i4"
+                      name="@ClienteKey">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@ClienteID]"
+                      dataType="i4"
+                      name="@ClienteID">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@nombre_completo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="@nombre_completo">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@email">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@genero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="@genero">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@telefono">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@departamento]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@departamento">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@municipio]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@municipio">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input].ExternalColumns[@direccion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="@direccion">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimCliente\busqueda de cliente si existe"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="busqueda de cliente si existe"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimCliente WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimCliente WHERE Activo =1) [refTable]
+where [refTable].[ClienteID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ClienteKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClienteID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_completo" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="email" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="genero" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="telefono" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="departamento" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="municipio" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="direccion" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newClienteID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB.NANODW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB.NANODW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Inputs[Lookup Input].Columns[newClienteID]"
+                      cachedDataType="i4"
+                      cachedName="newClienteID"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newClienteID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ClienteID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de DimCliente\busqueda de cliente si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[ClienteKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[ClienteKey]"
+                      name="ClienteKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ClienteKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      name="FechaActualizacion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FechaActualizacion</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      name="Activo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Activo</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de DimCliente\busqueda de cliente si existe.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de DimCliente\busqueda de cliente si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimCliente\Conversion de datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[ClienteID]"
+                      cachedDataType="i8"
+                      cachedName="ClienteID"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="email"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[email]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[genero]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="genero"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[genero]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[nombre_completo]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="nombre_completo"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_completo]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[telefono]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="telefono"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[telefono]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[departamento]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="departamento"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[departamento]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[municipio]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="municipio"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[municipio]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input].Columns[direccion]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="direccion"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[direccion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newClienteID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newClienteID]"
+                      name="newClienteID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newnombre_completo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newnombre_completo]"
+                      name="newnombre_completo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_completo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newemail]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newemail]"
+                      name="newemail"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[email]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newgenero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newgenero]"
+                      name="newgenero"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[genero]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newtelefono]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newtelefono]"
+                      name="newtelefono"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[telefono]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newdepartamento]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newdepartamento]"
+                      name="newdepartamento"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[departamento]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newmunicipio]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newmunicipio]"
+                      name="newmunicipio"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[municipio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newdireccion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newdireccion]"
+                      name="newdireccion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[direccion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimCliente\Insercion en DimCliente"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Insercion en DimCliente"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimCliente"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimCliente\Insercion en DimCliente.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[NanoDW]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[email]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[email]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[genero]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="genero"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[genero]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[genero]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[newClienteID]"
+                      cachedDataType="i4"
+                      cachedName="newClienteID"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[ClienteID]"
+                      lineageId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output].Columns[newClienteID]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[nombre_completo]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="nombre_completo"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_completo]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_completo]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[telefono]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="telefono"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[telefono]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[telefono]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[departamento]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="departamento"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[departamento]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[departamento]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[municipio]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="municipio"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[municipio]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[municipio]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].Columns[direccion]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="direccion"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[direccion]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[direccion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[ClienteKey]"
+                      dataType="i4"
+                      name="ClienteKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[ClienteID]"
+                      dataType="i4"
+                      name="ClienteID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_completo]"
+                      dataType="wstr"
+                      length="100"
+                      name="nombre_completo" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="255"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[genero]"
+                      dataType="wstr"
+                      length="15"
+                      name="genero" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[telefono]"
+                      dataType="wstr"
+                      length="255"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[departamento]"
+                      dataType="wstr"
+                      length="255"
+                      name="departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[municipio]"
+                      dataType="wstr"
+                      length="255"
+                      name="municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[direccion]"
+                      dataType="wstr"
+                      length="100"
+                      name="direccion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      name="FechaActualizacion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET].ExternalColumns[Activo]"
+                      dataType="bool"
+                      name="Activo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimCliente\Insercion en DimCliente.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Insercion en DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Insercion en DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Insercion en DimCliente.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimCliente\Magento"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Magento"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT  
+	-- gf.entity_id+1 AS ClienteID,
+    CAST(gf.entity_id + 1 AS SIGNED) AS ClienteID,
+    CAST(gf.name AS CHAR(100)) AS nombre_completo,
+    gf.email AS email,
+    CASE gf.gender
+    WHEN '1' then 'Masculino'
+    WHEN '2' then 'Femenino'
+    WHEN '3' then 'Sin Especificar'
+    ELSE 'No Definido' END as genero,
+    cae.telephone AS telefono,
+    cae.region AS departamento,
+    cae.city AS municipio,
+    CAST(cae.street AS CHAR(100)) AS direccion
+FROM magento.customer_grid_flat gf
+	LEFT JOIN magento.customer_address_entity cae ON gf.entity_id=cae.parent_id
+;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimCliente\Magento.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[magento]"
+                  connectionManagerRefId="Package.ConnectionManagers[magento]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ClienteID]"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]"
+                      name="ClienteID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_completo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre_completo]"
+                      length="100"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[nombre_completo]"
+                      name="nombre_completo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[genero]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[genero]"
+                      length="15"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[genero]"
+                      name="genero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[telefono]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[telefono]"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[telefono]"
+                      name="telefono"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[departamento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[departamento]"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[departamento]"
+                      name="departamento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[municipio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[municipio]"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[municipio]"
+                      name="municipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[direccion]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[direccion]"
+                      length="100"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].Columns[direccion]"
+                      name="direccion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ClienteID]"
+                      dataType="i8"
+                      name="ClienteID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[nombre_completo]"
+                      dataType="wstr"
+                      length="100"
+                      name="nombre_completo" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[email]"
+                      dataType="wstr"
+                      length="255"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[genero]"
+                      dataType="wstr"
+                      length="15"
+                      name="genero" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[telefono]"
+                      dataType="wstr"
+                      length="255"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[departamento]"
+                      dataType="wstr"
+                      length="255"
+                      name="departamento" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[municipio]"
+                      dataType="wstr"
+                      length="255"
+                      name="municipio" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[direccion]"
+                      dataType="wstr"
+                      length="100"
+                      name="direccion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ClienteID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ClienteID]"
+                      name="ClienteID" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[nombre_completo]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[nombre_completo]"
+                      name="nombre_completo" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[genero]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[genero]"
+                      name="genero" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[telefono]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[telefono]"
+                      name="telefono" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[departamento]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[departamento]"
+                      name="departamento" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[municipio]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[municipio]"
+                      name="municipio" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[direccion]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[direccion]"
+                      name="direccion" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimCliente\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado de DimCliente.Paths[Data Conversion Output]"
+              endId="Package\Llenado de DimCliente\busqueda de cliente si existe.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado de DimCliente\Conversion de datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado de DimCliente.Paths[Lookup Match Output]"
+              endId="Package\Llenado de DimCliente\Actualizacion de DimCliente.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de DimCliente.Paths[Lookup No Match Output]"
+              endId="Package\Llenado de DimCliente\Insercion en DimCliente.Inputs[Entrada de destino de ADO NET]"
+              name="Lookup No Match Output"
+              startId="Package\Llenado de DimCliente\busqueda de cliente si existe.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Llenado de DimCliente.Paths[Salida de origen de ADO NET]"
+              endId="Package\Llenado de DimCliente\Conversion de datos.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Llenado de DimCliente\Magento.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{CD36F984-D66E-46FE-955A-5F521D8B7AC9}"
+      DTS:From="Package\Delete DimCliente en NanoDW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Fila bolsón para Clientes no registrados" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A9E815C8-AEC5-42A7-A798-796A974F9731}"
+      DTS:From="Package\Fila bolsón para Clientes no registrados"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Llenado de DimCliente" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="218.666666666667,42.6666666666667"
+          Id="Package\Delete DimCliente en NanoDW"
+          TopLeft="225.312489927746,31.8157891243531" />
+        <NodeLayout
+          Size="268,42.6666666666667"
+          Id="Package\Fila bolsón para Clientes no registrados"
+          TopLeft="201.249991003425,110.842104046134" />
+        <NodeLayout
+          Size="188,42.6666666666667"
+          Id="Package\Llenado de DimCliente"
+          TopLeft="240.937489229256,191.921050524324" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="334.947907132252,74.4824557910198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.359648255114"
+              Start="0,0"
+              End="0,28.859648255114">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.859648255114" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="335.093740116341,153.5087707128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.4122798115236"
+              Start="0,0"
+              End="0,30.9122798115236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.9122798115236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Llenado de DimCliente">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimCliente\Conversion de datos"
+          TopLeft="277.499987594784,36.263157496575" />
+        <NodeLayout
+          Size="216,42.6666666666667"
+          Id="Package\Llenado de DimCliente\busqueda de cliente si existe"
+          TopLeft="263.124988237396,131.368419610232" />
+        <NodeLayout
+          Size="193.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimCliente\Insercion en DimCliente"
+          TopLeft="136.249993909151,237.421050024743" />
+        <NodeLayout
+          Size="212,42.6666666666667"
+          Id="Package\Llenado de DimCliente\Actualizacion de DimCliente"
+          TopLeft="472.083312229564,240.538009054846" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimCliente\Magento"
+          TopLeft="61.2499972619115,31.4736838649515" />
+        <EdgeLayout
+          Id="Package\Llenado de DimCliente.Paths[Lookup No Match Output]"
+          TopLeft="336.458321570729,174.035086276899">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-103.541660994912,63.3859637478438"
+              Start="0,0"
+              End="-103.541660994912,55.8859637478438">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6340294568486" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6340294568486"
+                    Point2="0,25.6340294568486"
+                    Point3="-4,25.6340294568486" />
+                  <mssgle:LineSegment
+                    End="-99.5416609949119,25.6340294568486" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-99.5416609949119,25.6340294568486"
+                    Point2="-103.541660994912,25.6340294568486"
+                    Point3="-103.541660994912,29.6340294568486" />
+                  <mssgle:LineSegment
+                    End="-103.541660994912,55.8859637478438" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-107.577217216206,30.6340294568486,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimCliente.Paths[Lookup Match Output]"
+          TopLeft="405.791654904063,174.035086276899">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="172.291657325501,66.5029227779474"
+              Start="0,0"
+              End="172.291657325501,59.0029227779474">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.8945643587287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.8945643587287"
+                    Point2="0,26.8945643587287"
+                    Point3="4,26.8945643587287" />
+                  <mssgle:LineSegment
+                    End="168.291657325501,26.8945643587287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="168.291657325501,26.8945643587287"
+                    Point2="172.291657325501,26.8945643587287"
+                    Point3="172.291657325501,30.8945643587287" />
+                  <mssgle:LineSegment
+                    End="172.291657325501,59.0029227779474" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="37.9544419440005,31.8945643587287,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimCliente.Paths[Data Conversion Output]"
+          TopLeft="368.645821249423,78.9298241632417">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.4385954469906"
+              Start="0,0"
+              End="0,44.9385954469906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.9385954469906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimCliente.Paths[Salida de origen de ADO NET]"
+          TopLeft="182.583330595245,55.2017540140966">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94.9166569995392,0"
+              Start="0,0"
+              End="87.4166569995392,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="87.4166569995392,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimCliente\busqueda de cliente si existe">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimCliente\Magento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimCliente\Insercion en DimCliente">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

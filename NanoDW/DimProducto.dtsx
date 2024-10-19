@@ -1,0 +1,1462 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2024 8:44:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAGGER"
+  DTS:CreatorName="JAGGER\Christian"
+  DTS:DTSID="{483C63B4-1519-4B51-A2E9-7AF01A5A982F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="76"
+  DTS:VersionGUID="{9DC7569E-8750-4754-9339-714E1B0502B1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[magento]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{BF9FF002-6ABE-4828-BA93-F2CCA8EF1B6E}"
+      DTS:ObjectName="magento">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADXLfm46NCKPGi1dv9Yx7eHBs+KITdFZH+Sx5bTqY5ArAAAAAAOgAAAAAIAACAAAACNroVN7KOSdbXpaFByqd32GR8GvvfRy18SBkkz+QIZhxAAAAA/5ov3qX9ZXcygB8qrqDWRQAAAAArYDysbNA2dV4mnF66AnT2lz01Ad+fuOsuc0A5kZHczCF7ItRPMRtYclbtRsv0w1njXPfao6/XBBM5035nMwF8</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NanoDW]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{903F4188-1EDA-420A-8480-E99A06F9B0AF}"
+      DTS:ObjectName="NanoDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-Package1-{903F4188-1EDA-420A-8480-E99A06F9B0AF}localhost.NanoDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB.NANODW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4ECCF973-D2DD-4A60-B119-D1510A3A862D}"
+      DTS:ObjectName="OLEDB.NANODW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{4ECCF973-D2DD-4A60-B119-D1510A3A862D}localhost.NanoDW1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete DimProducto en NanoDW"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{76CF2ABB-A25C-47EE-B92C-3497ECC0D042}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete DimProducto en NanoDW"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{903F4188-1EDA-420A-8480-E99A06F9B0AF}"
+          SQLTask:SqlStatementSource="delete DimProducto;&#xA;dbcc checkident('DimProducto',RESEED,0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado de DimProducto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{96E68A66-8B2B-40F8-81E8-0237E7899CE5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado de DimProducto">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado de DimProducto\Actualizar DimProducto"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Actualizar DimProducto"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC ActualizarProducto ?,?,?,?,?,?,?,?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimProducto\Actualizar DimProducto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB.NANODW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB.NANODW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[ProductoKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductoKey"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@ProductoKey]"
+                      lineageId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[ProductoKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[precio]"
+                      cachedDataType="numeric"
+                      cachedName="precio"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@precio]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[precio]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[peso]"
+                      cachedDataType="numeric"
+                      cachedName="peso"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@peso]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[peso]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[newproducto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newproducto"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@producto]"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newproducto]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[newcategoria]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newcategoria"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@categoria]"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newcategoria]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[newtipo_producto]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="32"
+                      cachedName="newtipo_producto"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@tipo_producto]"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newtipo_producto]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[newsku]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="64"
+                      cachedName="newsku"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@sku]"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newsku]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].Columns[ProductoID]"
+                      cachedDataType="i8"
+                      cachedName="ProductoID"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@ProductoID]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@ProductoKey]"
+                      dataType="i4"
+                      name="@ProductoKey">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@ProductoID]"
+                      dataType="i4"
+                      name="@ProductoID">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@producto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@producto">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@categoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@categoria">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@sku]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="@sku">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@tipo_producto]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="@tipo_producto">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@precio]"
+                      dataType="numeric"
+                      name="@precio"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input].ExternalColumns[@peso]"
+                      dataType="numeric"
+                      name="@peso"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimProducto\Actualizar DimProducto.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimProducto\Actualizar DimProducto.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Actualizar DimProducto.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Actualizar DimProducto.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Actualizar DimProducto.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimProducto\Busqueda de producto si existe"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de producto si existe"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimProducto WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimProducto WHERE Activo =1) [refTable]
+where [refTable].[ProductoID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductoKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductoID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="producto" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="categoria" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="sku" dataType="DT_STR" length="64" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="tipo_producto" dataType="DT_STR" length="32" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="precio" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="peso" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newProductoID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB.NANODW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB.NANODW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Inputs[Lookup Input].Columns[newProductoID]"
+                      cachedDataType="i4"
+                      cachedName="newProductoID"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newProductoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductoID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Busqueda de producto si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      name="FechaActualizacion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FechaActualizacion</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      name="Activo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Activo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[ProductoKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output].Columns[ProductoKey]"
+                      name="ProductoKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductoKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Busqueda de producto si existe.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Busqueda de producto si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimProducto\Conversion de Datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de Datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input].Columns[ProductoID]"
+                      cachedDataType="i8"
+                      cachedName="ProductoID"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input].Columns[categoria]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="categoria"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[categoria]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input].Columns[producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="producto"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[producto]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input].Columns[sku]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="sku"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[sku]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input].Columns[tipo_producto]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="tipo_producto"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_producto]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newProductoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newProductoID]"
+                      name="newProductoID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newcategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newcategoria]"
+                      name="newcategoria"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[categoria]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newproducto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newproducto]"
+                      name="newproducto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[producto]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newsku]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="64"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newsku]"
+                      name="newsku"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[sku]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newtipo_producto]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="32"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newtipo_producto]"
+                      name="newtipo_producto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_producto]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimProducto\Insercion en DimProducto"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Insercion en DimProducto"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DimProducto"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimProducto\Insercion en DimProducto.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[NanoDW]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[precio]"
+                      cachedDataType="numeric"
+                      cachedName="precio"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[precio]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[peso]"
+                      cachedDataType="numeric"
+                      cachedName="peso"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[peso]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[peso]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[producto]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="producto"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[producto]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[producto]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[categoria]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="categoria"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[categoria]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[categoria]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[sku]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="sku"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[sku]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[sku]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[tipo_producto]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="tipo_producto"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[tipo_producto]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_producto]" />
+                    <inputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].Columns[newProductoID]"
+                      cachedDataType="i4"
+                      cachedName="newProductoID"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProductoID]"
+                      lineageId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output].Columns[newProductoID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProductoKey]"
+                      dataType="i4"
+                      name="ProductoKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProductoID]"
+                      dataType="i4"
+                      name="ProductoID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="producto" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[categoria]"
+                      dataType="wstr"
+                      length="255"
+                      name="categoria" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[sku]"
+                      dataType="wstr"
+                      length="64"
+                      name="sku" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[tipo_producto]"
+                      dataType="wstr"
+                      length="32"
+                      name="tipo_producto" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio]"
+                      dataType="numeric"
+                      name="precio"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[peso]"
+                      dataType="numeric"
+                      name="peso"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      name="FechaActualizacion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET].ExternalColumns[Activo]"
+                      dataType="bool"
+                      name="Activo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimProducto\Insercion en DimProducto.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Insercion en DimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Insercion en DimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Insercion en DimProducto.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de DimProducto\Magento"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Magento"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	producto.entity_id AS ProductoID,
+    categoria.name AS categoria,
+    producto.name AS producto,
+    producto.sku,
+    CASE producto.type_id 
+	WHEN 'simple' then 'Fisico'
+    WHEN 'virtual' then 'Digital'
+    ELSE 'No Definido' END AS tipo_producto,
+    producto.price AS precio,
+    ifnull(producto.weight,0) AS peso
+FROM magento.catalog_category_product categoriaproducto
+	INNER JOIN magento.catalog_category_flat_store_1 categoria ON categoriaproducto.category_id=categoria.entity_id
+	INNER JOIN magento.catalog_product_flat_1 producto ON categoriaproducto.product_id=producto.entity_id
+;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de DimProducto\Magento.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[magento]"
+                  connectionManagerRefId="Package.ConnectionManagers[magento]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ProductoID]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]"
+                      name="ProductoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[categoria]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[categoria]"
+                      length="255"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[categoria]"
+                      name="categoria"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[producto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[producto]"
+                      length="255"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[producto]"
+                      name="producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[sku]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[sku]"
+                      length="64"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[sku]"
+                      name="sku"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_producto]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[tipo_producto]"
+                      length="11"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[tipo_producto]"
+                      name="tipo_producto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[precio]"
+                      name="precio"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[peso]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[peso]"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].Columns[peso]"
+                      name="peso"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ProductoID]"
+                      dataType="i8"
+                      name="ProductoID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[categoria]"
+                      dataType="wstr"
+                      length="255"
+                      name="categoria" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[producto]"
+                      dataType="wstr"
+                      length="255"
+                      name="producto" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[sku]"
+                      dataType="wstr"
+                      length="64"
+                      name="sku" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[tipo_producto]"
+                      dataType="wstr"
+                      length="11"
+                      name="tipo_producto" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio]"
+                      dataType="numeric"
+                      name="precio"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[peso]"
+                      dataType="numeric"
+                      name="peso"
+                      precision="12"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ProductoID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ProductoID]"
+                      name="ProductoID" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[categoria]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[categoria]"
+                      name="categoria" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[producto]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[producto]"
+                      name="producto" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[sku]"
+                      dataType="wstr"
+                      length="64"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[sku]"
+                      name="sku" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[tipo_producto]"
+                      dataType="wstr"
+                      length="11"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[tipo_producto]"
+                      name="tipo_producto" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio]"
+                      name="precio"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[peso]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[peso]"
+                      name="peso"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de DimProducto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado de DimProducto.Paths[Data Conversion Output]"
+              endId="Package\Llenado de DimProducto\Busqueda de producto si existe.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado de DimProducto\Conversion de Datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado de DimProducto.Paths[Lookup Match Output]"
+              endId="Package\Llenado de DimProducto\Actualizar DimProducto.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de DimProducto.Paths[Lookup No Match Output]"
+              endId="Package\Llenado de DimProducto\Insercion en DimProducto.Inputs[Entrada de destino de ADO NET]"
+              name="Lookup No Match Output"
+              startId="Package\Llenado de DimProducto\Busqueda de producto si existe.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Llenado de DimProducto.Paths[Salida de origen de ADO NET]"
+              endId="Package\Llenado de DimProducto\Conversion de Datos.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Llenado de DimProducto\Magento.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Reiniciar autoincremental"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{E4F95198-0C09-4C1F-B72F-9BF7E45D9FE8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reiniciar autoincremental"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{903F4188-1EDA-420A-8480-E99A06F9B0AF}"
+          SQLTask:SqlStatementSource="dbcc checkident('DimProducto',RESEED,0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{C2A567FF-A935-4911-B82E-12347125946F}"
+      DTS:From="Package\Delete DimProducto en NanoDW"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Reiniciar autoincremental" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD84CF3A-11AF-490D-9BE4-98B0F353D1F9}"
+      DTS:From="Package\Reiniciar autoincremental"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Llenado de DimProducto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\Delete DimProducto en NanoDW"
+          TopLeft="61.8749972339721,41.7368416470009" />
+        <NodeLayout
+          Size="196.666666666667,42.6666666666667"
+          Id="Package\Llenado de DimProducto"
+          TopLeft="383.624983096495,210.421050381587" />
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\Reiniciar autoincremental"
+          TopLeft="208.749990668148,121.105261828183" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="179.874997233972,84.4035083136676">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129.208326767509,36.7017535145153"
+              Start="0,0"
+              End="129.208326767509,29.2017535145153">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.3508767572577" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.3508767572577"
+                    Point2="0,18.3508767572577"
+                    Point3="4,18.3508767572577" />
+                  <mssgle:LineSegment
+                    End="125.208326767509,18.3508767572577" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125.208326767509,18.3508767572577"
+                    Point2="129.208326767509,18.3508767572577"
+                    Point3="129.208326767509,22.3508767572577" />
+                  <mssgle:LineSegment
+                    End="129.208326767509,29.2017535145153" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="309.083324001481,163.77192849485">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="172.874992428347,46.6491218867372"
+              Start="0,0"
+              End="172.874992428347,39.1491218867372">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.3245609433686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.3245609433686"
+                    Point2="0,23.3245609433686"
+                    Point3="4,23.3245609433686" />
+                  <mssgle:LineSegment
+                    End="168.874992428347,23.3245609433686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="168.874992428347,23.3245609433686"
+                    Point2="172.874992428347,23.3245609433686"
+                    Point3="172.874992428347,27.3245609433686" />
+                  <mssgle:LineSegment
+                    End="172.874992428347,39.1491218867372" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Llenado de DimProducto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="178.666666666667,42.6666666666667"
+          Id="Package\Llenado de DimProducto\Conversion de Datos"
+          TopLeft="361.845221919495,20.1570590936336" />
+        <NodeLayout
+          Size="190.666666666667,42.6666666666667"
+          Id="Package\Llenado de DimProducto\Actualizar DimProducto"
+          TopLeft="558.035689339575,199.724308584009" />
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\Llenado de DimProducto\Insercion en DimProducto"
+          TopLeft="220.722219820652,200.705920878027" />
+        <NodeLayout
+          Size="228,42.6666666666667"
+          Id="Package\Llenado de DimProducto\Busqueda de producto si existe"
+          TopLeft="332.748000998021,111.526314564937" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Llenado de DimProducto\Magento"
+          TopLeft="91.2499983794992,15.5263140002611" />
+        <EdgeLayout
+          Id="Package\Llenado de DimProducto.Paths[Lookup Match Output]"
+          TopLeft="483.414667664688,154.192981231603">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="169.95435500822,45.5313273524056"
+              Start="0,0"
+              End="169.95435500822,38.0313273524056">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.4029058288469" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.4029058288469"
+                    Point2="0,18.4029058288469"
+                    Point3="4,18.4029058288469" />
+                  <mssgle:LineSegment
+                    End="165.95435500822,18.4029058288469" />
+                  <mssgle:CubicBezierSegment
+                    Point1="165.95435500822,18.4029058288469"
+                    Point2="169.95435500822,18.4029058288469"
+                    Point3="169.95435500822,22.4029058288469" />
+                  <mssgle:LineSegment
+                    End="169.95435500822,38.0313273524056" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="36.78579078536,23.4029058288469,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimProducto.Paths[Data Conversion Output]"
+          TopLeft="448.963278125425,62.8237257603003">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.7025888046364"
+              Start="0,0"
+              End="0,41.2025888046364">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.2025888046364" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimProducto.Paths[Salida de origen de ADO NET]"
+          TopLeft="212.583331712833,39.1750198802807">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="149.261890206663,0"
+              Start="0,0"
+              End="141.761890206663,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="141.761890206663,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de DimProducto.Paths[Lookup No Match Output]"
+          TopLeft="410.081334331355,154.192981231603">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-88.0257811773694,46.5129396464236"
+              Start="0,0"
+              End="-88.0257811773694,39.0129396464236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.7996550487287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.7996550487287"
+                    Point2="0,18.7996550487287"
+                    Point3="-4,18.7996550487287" />
+                  <mssgle:LineSegment
+                    End="-84.0257811773694,18.7996550487287" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-84.0257811773694,18.7996550487287"
+                    Point2="-88.0257811773694,18.7996550487287"
+                    Point3="-88.0257811773694,22.7996550487287" />
+                  <mssgle:LineSegment
+                    End="-88.0257811773694,39.0129396464236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.8192773074347,23.7996550487287,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimProducto\Magento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimProducto\Busqueda de producto si existe">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de DimProducto\Insercion en DimProducto">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

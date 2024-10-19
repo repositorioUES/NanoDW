@@ -1,0 +1,2450 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/13/2024 5:45:29 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAGGER"
+  DTS:CreatorName="JAGGER\Christian"
+  DTS:DTSID="{55374E67-239E-4238-AA41-36F3DAB4FE84}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="FactVenta"
+  DTS:PackageType="5"
+  DTS:VersionBuild="119"
+  DTS:VersionGUID="{8E296F4B-5440-4EBA-AADE-5D3CD880CD17}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.magento.root]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{EFA60DA3-8BF8-4FA7-B090-A2CEA338031B}"
+      DTS:ObjectName="localhost.magento.root">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADTEJLVcgguambsa9qhd9jhXrtJbZUHW6mxc+WmuGDYqAAAAAAOgAAAAAIAACAAAADsbJQEnpddb8He5vU+Ix7yW6AXoNbyXHiMjlP0SHaqkhAAAAC9nrbEZSEEuRzDdQTCLRZKQAAAAIk4tQNvdMM0GlD1OQHHs6kjfppG7btDnJsnBQgkACWBYs0tyW9BLuDbHxM6B68zFZeb78m4YVF+X2Ldd5mu4fs</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.NanoDW]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{EFABB432-6B76-4D00-ADED-BDFC325BF61F}"
+      DTS:ObjectName="localhost.NanoDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-FactVenta-{EFABB432-6B76-4D00-ADED-BDFC325BF61F}localhost.NanoDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDBNanoDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{003CEED8-69F0-4D9F-8E74-F474414178D7}"
+      DTS:ObjectName="OLEDBNanoDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Persist Security Info=False;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-FactVenta-{003CEED8-69F0-4D9F-8E74-F474414178D7}localhost.NanoDW2;Server SPN=JAGGER;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B5EB0CBF-D5E0-4E7D-A0D2-26AE500EF786}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="UltimaFechaEjecucion">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Actualizar Fecha Ultima Ejecucion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{0D1CD150-4CC7-4E31-99AA-EF582405FCEF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Actualizar Fecha Ultima Ejecucion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{003CEED8-69F0-4D9F-8E74-F474414178D7}"
+          SQLTask:SqlStatementSource="UPDATE Parametros SET ValorParametro = CONVERT(VARCHAR(23), GETDATE(), 121) WHERE NombreParametro='Fecha_Ultima_Ejecucion'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Leer Parametros"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{E68ABB18-2A57-49C4-8F7C-62EC23A8A24D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Leer Parametros"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{003CEED8-69F0-4D9F-8E74-F474414178D7}"
+          SQLTask:SqlStatementSource="SELECT FechaUltimaEjecucion = ValorParametro from Parametros WHERE NombreParametro = 'Fecha_Ultima_Ejecucion'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="FechaUltimaEjecucion"
+            SQLTask:DtsVariableName="User::UltimaFechaEjecucion" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado de FactVenta"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BEC92109-E644-46D5-AF2D-9BA530B4F104}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado de FactVenta"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="[Magento].[SqlCommand]">"SELECT  
+	IFNULL(CAST(so.customer_id + 1 AS SIGNED),1) AS ClienteID, -- DimCLiente
+    CAST(sii.product_id AS SIGNED) AS ProductoID, -- DimProducto
+    IFNULL(CAST(so.applied_rule_ids + 1 AS SIGNED),1) AS PromocionID,  -- DimPromocion,
+    CAST(si.order_id AS SIGNED) AS OrdenID,   -- DimOrden
+    CONVERT(CONCAT(YEAR(so.created_at), LPAD(MONTH(so.created_at), 2, '0'), LPAD(DAY(so.created_at), 2, '0')), SIGNED) AS FechaOrden,
+    CONVERT(CONCAT(YEAR(so.updated_at), LPAD(MONTH(so.updated_at), 2, '0'), LPAD(DAY(so.updated_at), 2, '0')), SIGNED) AS FechaEnvio,
+    -- so.updated_at AS FechaEnvio,
+    sii.qty AS Cantidad,
+    sii.base_price AS precio_unitario_regular,
+    sii.base_row_total AS precio_extendido,
+    IFNULL(sii.discount_amount,0.0) AS cantidad_descuento,
+    (sii.base_row_total-IFNULL(sii.discount_amount,0.0)) AS precio_venta_final   
+FROM magento.sales_invoice_item sii
+	INNER JOIN magento.sales_invoice si ON sii.parent_id=si.entity_id
+    INNER JOIN magento.sales_order so ON si.order_id=so.entity_id
+  WHERE CAST(so.created_at AS CHAR) &gt; '"+(DT_WSTR, 100)@[User::UltimaFechaEjecucion]+"'"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de llave FechaEnvio"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimFecha]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimFecha]) [refTable]
+where [refTable].[FechaKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="FechaKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="fecha" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_dia" dataType="DT_STR" length="9" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="nombre_mes" dataType="DT_STR" length="12" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="dia" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="semana" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="mes" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="trimestre" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="anio" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input].Columns[newFechaEnvio]"
+                      cachedDataType="i4"
+                      cachedName="newFechaEnvio"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FechaKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output].Columns[FechaEnvioKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output].Columns[FechaEnvioKey]"
+                      name="FechaEnvioKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FechaKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de llave FechaOrden"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimFecha]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimFecha]) [refTable]
+where [refTable].[FechaKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="FechaKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="fecha" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_dia" dataType="DT_STR" length="9" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="nombre_mes" dataType="DT_STR" length="12" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="dia" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="semana" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="mes" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="trimestre" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="anio" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaOrden]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Inputs[Lookup Input].Columns[newFechaOrden]"
+                      cachedDataType="i4"
+                      cachedName="newFechaOrden"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaOrden]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FechaKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output].Columns[FechaOrdenKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output].Columns[FechaOrdenKey]"
+                      name="FechaOrdenKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FechaKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de llave surrogada DimCliente"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimCliente WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimCliente WHERE Activo =1) [refTable]
+where [refTable].[ClienteID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ClienteKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClienteID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_completo" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="email" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="genero" dataType="DT_STR" length="15" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="telefono" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="departamento" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="municipio" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="direccion" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newClienteID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Inputs[Lookup Input].Columns[newClienteID]"
+                      cachedDataType="i4"
+                      cachedName="newClienteID"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newClienteID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ClienteID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Match Output].Columns[ClienteKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Match Output].Columns[ClienteKey]"
+                      name="ClienteKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ClienteKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de llave surrogada DimOrden"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimOrden WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimOrden WHERE Activo =1) [refTable]
+where [refTable].[OrdenID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="OrdenKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrdenID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="codigo_orden" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="subtotal_orden" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="envio" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="total_orden" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="estado_orden" dataType="DT_STR" length="25" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="metodo_pago" dataType="DT_STR" length="128" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="direccion_facturacion" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="direccion_envio" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="tipo_envio" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newOrdenID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Inputs[Lookup Input].Columns[newOrdenID]"
+                      cachedDataType="i4"
+                      cachedName="newOrdenID"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newOrdenID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">OrdenID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Match Output].Columns[OrdenKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Match Output].Columns[OrdenKey]"
+                      name="OrdenKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">OrdenKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de llave surrogada DimProducto"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimProducto WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimProducto WHERE Activo =1) [refTable]
+where [refTable].[ProductoID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ProductoKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductoID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="producto" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="categoria" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="sku" dataType="DT_STR" length="64" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="tipo_producto" dataType="DT_STR" length="32" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="precio" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="peso" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newProductoID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Inputs[Lookup Input].Columns[newProductoID]"
+                      cachedDataType="i4"
+                      cachedName="newProductoID"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newProductoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProductoID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Match Output].Columns[ProductoKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Match Output].Columns[ProductoKey]"
+                      name="ProductoKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProductoKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de llave surrogada DimPromocion"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimPromocion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimPromocion]) [refTable]
+where [refTable].[PromocionID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PromocionKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PromocionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_promocion" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="descripcion" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="tipo_promocion" dataType="DT_STR" length="32" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="cantidad_descuento" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="cupon" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newPromocionID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Inputs[Lookup Input].Columns[newPromocionID]"
+                      cachedDataType="i4"
+                      cachedName="newPromocionID"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newPromocionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PromocionID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Match Output].Columns[PromocionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Match Output].Columns[PromocionKey]"
+                      name="PromocionKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PromocionKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de todas las llaves surrogadas"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[ClienteID]"
+                      cachedDataType="i8"
+                      cachedName="ClienteID"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[ProductoID]"
+                      cachedDataType="i8"
+                      cachedName="ProductoID"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[PromocionID]"
+                      cachedDataType="i8"
+                      cachedName="PromocionID"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[OrdenID]"
+                      cachedDataType="i8"
+                      cachedName="OrdenID"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[OrdenID]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[FechaOrden]"
+                      cachedDataType="i8"
+                      cachedName="FechaOrden"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaOrden]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[FechaEnvio]"
+                      cachedDataType="i8"
+                      cachedName="FechaEnvio"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newClienteID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newClienteID]"
+                      name="newClienteID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newProductoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newProductoID]"
+                      name="newProductoID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newPromocionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newPromocionID]"
+                      name="newPromocionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newOrdenID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newOrdenID]"
+                      name="newOrdenID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[OrdenID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaOrden]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaOrden]"
+                      name="newFechaOrden"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaOrden]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]"
+                      name="newFechaEnvio"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\Magento"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Magento"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  
+	IFNULL(CAST(so.customer_id + 1 AS SIGNED),1) AS ClienteID, -- DimCLiente
+    CAST(sii.product_id AS SIGNED) AS ProductoID, -- DimProducto
+    IFNULL(CAST(so.applied_rule_ids + 1 AS SIGNED),1) AS PromocionID,  -- DimPromocion,
+    CAST(si.order_id AS SIGNED) AS OrdenID,   -- DimOrden
+    CONVERT(CONCAT(YEAR(so.created_at), LPAD(MONTH(so.created_at), 2, '0'), LPAD(DAY(so.created_at), 2, '0')), SIGNED) AS FechaOrden,
+    CONVERT(CONCAT(YEAR(so.updated_at), LPAD(MONTH(so.updated_at), 2, '0'), LPAD(DAY(so.updated_at), 2, '0')), SIGNED) AS FechaEnvio,
+    -- so.updated_at AS FechaEnvio,
+    sii.qty AS Cantidad,
+    sii.base_price AS precio_unitario_regular,
+    sii.base_row_total AS precio_extendido,
+    IFNULL(sii.discount_amount,0.0) AS cantidad_descuento,
+    (sii.base_row_total-IFNULL(sii.discount_amount,0.0)) AS precio_venta_final   
+FROM magento.sales_invoice_item sii
+	INNER JOIN magento.sales_invoice si ON sii.parent_id=si.entity_id
+    INNER JOIN magento.sales_order so ON si.order_id=so.entity_id
+  WHERE CAST(so.created_at AS CHAR) &gt; ''</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\Magento.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.magento.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.magento.root]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ClienteID]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ClienteID]"
+                      name="ClienteID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ProductoID]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[ProductoID]"
+                      name="ProductoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[PromocionID]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[PromocionID]"
+                      name="PromocionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[OrdenID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[OrdenID]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[OrdenID]"
+                      name="OrdenID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaOrden]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaOrden]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaOrden]"
+                      name="FechaOrden"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaEnvio]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]"
+                      name="FechaEnvio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[Cantidad]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[Cantidad]"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_unitario_regular]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unitario_regular]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_unitario_regular]"
+                      name="precio_unitario_regular"
+                      precision="20"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_extendido]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_extendido]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_extendido]"
+                      name="precio_extendido"
+                      precision="20"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad_descuento]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]"
+                      name="cantidad_descuento"
+                      precision="20"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_venta_final]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_venta_final]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_venta_final]"
+                      name="precio_venta_final"
+                      precision="21"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ClienteID]"
+                      dataType="i8"
+                      name="ClienteID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[ProductoID]"
+                      dataType="i8"
+                      name="ProductoID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[PromocionID]"
+                      dataType="i8"
+                      name="PromocionID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[OrdenID]"
+                      dataType="i8"
+                      name="OrdenID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaOrden]"
+                      dataType="i8"
+                      name="FechaOrden" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaEnvio]"
+                      dataType="i8"
+                      name="FechaEnvio" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad]"
+                      dataType="numeric"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_unitario_regular]"
+                      dataType="numeric"
+                      name="precio_unitario_regular"
+                      precision="20"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_extendido]"
+                      dataType="numeric"
+                      name="precio_extendido"
+                      precision="20"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[cantidad_descuento]"
+                      dataType="numeric"
+                      name="cantidad_descuento"
+                      precision="20"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[precio_venta_final]"
+                      dataType="numeric"
+                      name="precio_venta_final"
+                      precision="21"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ClienteID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ClienteID]"
+                      name="ClienteID" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ProductoID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ProductoID]"
+                      name="ProductoID" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[PromocionID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[PromocionID]"
+                      name="PromocionID" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[OrdenID]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[OrdenID]"
+                      name="OrdenID" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaOrden]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaOrden]"
+                      name="FechaOrden" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaEnvio]"
+                      dataType="i8"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaEnvio]"
+                      name="FechaEnvio" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad]"
+                      name="Cantidad"
+                      precision="12"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio_unitario_regular]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio_unitario_regular]"
+                      name="precio_unitario_regular"
+                      precision="20"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio_extendido]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio_extendido]"
+                      name="precio_extendido"
+                      precision="20"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[cantidad_descuento]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[cantidad_descuento]"
+                      name="cantidad_descuento"
+                      precision="20"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio_venta_final]"
+                      dataType="numeric"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[precio_venta_final]"
+                      name="precio_venta_final"
+                      precision="21"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de FactVenta\NanoDW"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="NanoDW"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."FactVentas"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de FactVenta\NanoDW.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.NanoDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.NanoDW]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[Cantidad]"
+                      cachedDataType="numeric"
+                      cachedName="Cantidad"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[Cantidad]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[precio_extendido]"
+                      cachedDataType="numeric"
+                      cachedName="precio_extendido"
+                      cachedPrecision="20"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_extendido]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_extendido]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[cantidad_descuento]"
+                      cachedDataType="numeric"
+                      cachedName="cantidad_descuento"
+                      cachedPrecision="20"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad_descuento]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[cantidad_descuento]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[precio_venta_final]"
+                      cachedDataType="numeric"
+                      cachedName="precio_venta_final"
+                      cachedPrecision="21"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_venta_final]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_venta_final]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[ClienteKey]"
+                      cachedDataType="i4"
+                      cachedName="ClienteKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[ClienteKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Match Output].Columns[ClienteKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[ProductoKey]"
+                      cachedDataType="i4"
+                      cachedName="ProductoKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProductoKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Match Output].Columns[ProductoKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[PromocionKey]"
+                      cachedDataType="i4"
+                      cachedName="PromocionKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[PromocionKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Match Output].Columns[PromocionKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[OrdenKey]"
+                      cachedDataType="i4"
+                      cachedName="OrdenKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[OrdenKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Match Output].Columns[OrdenKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[FechaOrdenKey]"
+                      cachedDataType="i4"
+                      cachedName="FechaOrdenKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaOrdenKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output].Columns[FechaOrdenKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[FechaEnvioKey]"
+                      cachedDataType="i4"
+                      cachedName="FechaEnvioKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaEnvioKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output].Columns[FechaEnvioKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[precio_unitario_regular]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unitario_regular"
+                      cachedPrecision="20"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unitario_regular]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_unitario_regular]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[ClienteKey]"
+                      dataType="i4"
+                      name="ClienteKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[ProductoKey]"
+                      dataType="i4"
+                      name="ProductoKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[PromocionKey]"
+                      dataType="i4"
+                      name="PromocionKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[OrdenKey]"
+                      dataType="i4"
+                      name="OrdenKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaOrdenKey]"
+                      dataType="i4"
+                      name="FechaOrdenKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaEnvioKey]"
+                      dataType="i4"
+                      name="FechaEnvioKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
+                      dataType="i4"
+                      name="cantidad" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unitario_regular]"
+                      dataType="numeric"
+                      name="precio_unitario_regular"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_extendido]"
+                      dataType="numeric"
+                      name="precio_extendido"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad_descuento]"
+                      dataType="numeric"
+                      name="cantidad_descuento"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_venta_final]"
+                      dataType="numeric"
+                      name="precio_venta_final"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de FactVenta\NanoDW.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\NanoDW.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de FactVenta\NanoDW.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Data Conversion Output]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Lookup Match Output]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Lookup Match Output1]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Lookup Match Output2]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Lookup Match Output3]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Lookup Match Output4]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Lookup Match Output5]"
+              endId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de FactVenta.Paths[Salida de origen de ADO NET]"
+              endId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{921572A2-BB1E-450F-9360-DECA1DCD1716}"
+      DTS:From="Package\Leer Parametros"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Llenado de FactVenta" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{78334677-86A3-4417-889D-3503632D291D}"
+      DTS:From="Package\Llenado de FactVenta"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\Actualizar Fecha Ultima Ejecucion" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="241.333333333334,42.6666666666667"
+          Id="Package\Actualizar Fecha Ultima Ejecucion"
+          TopLeft="374.374983264134,288.73683893499" />
+        <NodeLayout
+          Size="158.666666666667,42.6666666666667"
+          Id="Package\Leer Parametros"
+          TopLeft="143.124993601814,70.4736834367392" />
+        <NodeLayout
+          Size="184,42.6666666666667"
+          Id="Package\Llenado de FactVenta"
+          TopLeft="194.999991282821,176.52631385125" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="222.458326935147,113.140350103406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.5416643476733,63.3859637478437"
+              Start="0,0"
+              End="64.5416643476733,55.8859637478437">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6929818739219" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6929818739219"
+                    Point2="0,31.6929818739219"
+                    Point3="4,31.6929818739219" />
+                  <mssgle:LineSegment
+                    End="60.5416643476733,31.6929818739219" />
+                  <mssgle:CubicBezierSegment
+                    Point1="60.5416643476733,31.6929818739219"
+                    Point2="64.5416643476733,31.6929818739219"
+                    Point3="64.5416643476733,35.6929818739219" />
+                  <mssgle:LineSegment
+                    End="64.5416643476733,55.8859637478437" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="286.999991282821,219.192980517916">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="208.04165864798,69.5438584170735"
+              Start="0,0"
+              End="208.04165864798,62.0438584170735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7719292085367" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.7719292085367"
+                    Point2="0,34.7719292085367"
+                    Point3="4,34.7719292085367" />
+                  <mssgle:LineSegment
+                    End="204.04165864798,34.7719292085367" />
+                  <mssgle:CubicBezierSegment
+                    Point1="204.04165864798,34.7719292085367"
+                    Point2="208.04165864798,34.7719292085367"
+                    Point3="208.04165864798,38.7719292085367" />
+                  <mssgle:LineSegment
+                    End="208.04165864798,62.0438584170735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Llenado de FactVenta">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="280,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas"
+          TopLeft="238.124989354983,170.2631560692" />
+        <NodeLayout
+          Size="121.333333333334,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Magento"
+          TopLeft="308.124986225739,60.3157890529844" />
+        <NodeLayout
+          Size="229.333333333334,42"
+          Id="Package\Llenado de FactVenta\Busqueda de llave FechaOrden"
+          TopLeft="263.124988237395,479.403503603333" />
+        <NodeLayout
+          Size="269.333333333334,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden"
+          TopLeft="242.499989159406,422.842100620436" />
+        <NodeLayout
+          Size="290.666666666667,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion"
+          TopLeft="238.124989354983,358.526311852926" />
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\Llenado de FactVenta\NanoDW"
+          TopLeft="322.499985583127,642.24561021874" />
+        <NodeLayout
+          Size="226.666666666667,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio"
+          TopLeft="264.374988181517,534.175433668295" />
+        <NodeLayout
+          Size="273.333333333334,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente"
+          TopLeft="246.249988991767,235.368418468333" />
+        <NodeLayout
+          Size="282.666666666667,42.6666666666667"
+          Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto"
+          TopLeft="239.374989299104,294.210523085416" />
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Salida de origen de ADO NET]"
+          TopLeft="368.791652892406,102.982455719651">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.33333646257699,67.280700349549"
+              Start="0,0"
+              End="9.33333646257699,59.780700349549">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.6403501747745" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.6403501747745"
+                    Point2="0,33.6403501747745"
+                    Point3="4,33.6403501747745" />
+                  <mssgle:LineSegment
+                    End="5.33333646257699,33.6403501747745" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.33333646257699,33.6403501747745"
+                    Point2="9.33333646257699,33.6403501747745"
+                    Point3="9.33333646257699,37.6403501747745" />
+                  <mssgle:LineSegment
+                    End="9.33333646257699,59.780700349549" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Lookup Match Output5]"
+          TopLeft="380.770820215655,576.842100334961">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.4035098837792"
+              Start="0,0"
+              End="0,57.9035098837792">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.9035098837792" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,23.1470674418896,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Lookup Match Output4]"
+          TopLeft="492.458321570729,500.403503603333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.4166667225453,55.1052633982948"
+              Start="0,0"
+              End="6.0833332774547,55.1052633982948">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="52.8749984633179,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="52.8749984633179,0"
+                    Point2="56.8749984633179,0"
+                    Point3="56.8749984633179,4" />
+                  <mssgle:LineSegment
+                    End="56.8749984633179,51.1052633982948" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.8749984633179,51.1052633982948"
+                    Point2="56.8749984633179,55.1052633982948"
+                    Point3="52.8749984633179,55.1052633982948" />
+                  <mssgle:LineSegment
+                    End="6.0833332774547,55.1052633982948" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.6836117445679,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Lookup Match Output3]"
+          TopLeft="242.499989159406,444.175433953769">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.6249990779894,56.2280696495638"
+              Start="0,0"
+              End="13.1249990779894,56.2280696495638">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-49.7499986030162,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.7499986030162,0"
+                    Point2="-53.7499986030162,0"
+                    Point3="-53.7499986030162,4" />
+                  <mssgle:LineSegment
+                    End="-53.7499986030162,52.2280696495638" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-53.7499986030162,52.2280696495638"
+                    Point2="-53.7499986030162,56.2280696495638"
+                    Point3="-49.7499986030162,56.2280696495638" />
+                  <mssgle:LineSegment
+                    End="13.1249990779894,56.2280696495638" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-101.941385321766,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Lookup Match Output2]"
+          TopLeft="528.79165602165,379.85964518626">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.958333528911,64.3157887675093"
+              Start="0,0"
+              End="-9.458333528911,64.3157887675093">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="49.1249986309559,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.1249986309559,0"
+                    Point2="53.1249986309559,0"
+                    Point3="53.1249986309559,4" />
+                  <mssgle:LineSegment
+                    End="53.1249986309559,60.3157887675093" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.1249986309559,60.3157887675093"
+                    Point2="53.1249986309559,64.3157887675093"
+                    Point3="49.1249986309559,64.3157887675093" />
+                  <mssgle:LineSegment
+                    End="-9.458333528911,64.3157887675093" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="4.9336119122059,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Lookup Match Output1]"
+          TopLeft="239.374989299104,315.54385641875">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-1.24999994412065,64.3157887675097"
+              Start="0,0"
+              End="-8.74999994412065,64.3157887675097">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-49.7499986030163,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.7499986030163,0"
+                    Point2="-53.7499986030163,0"
+                    Point3="-53.7499986030163,4" />
+                  <mssgle:LineSegment
+                    End="-53.7499986030163,60.3157887675097" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-53.7499986030163,60.3157887675097"
+                    Point2="-53.7499986030163,64.3157887675097"
+                    Point3="-49.7499986030163,64.3157887675097" />
+                  <mssgle:LineSegment
+                    End="-8.74999994412065,64.3157887675097" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-101.941385321766,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Lookup Match Output]"
+          TopLeft="519.583322325101,256.701751801666">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="2.45833364066982,58.8421046170835"
+              Start="0,0"
+              End="9.95833364066982,58.8421046170835">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.5833324951431,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.5833324951431,0"
+                    Point2="50.5833324951431,0"
+                    Point3="50.5833324951431,4" />
+                  <mssgle:LineSegment
+                    End="50.5833324951431,54.8421046170835" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.5833324951431,54.8421046170835"
+                    Point2="50.5833324951431,58.8421046170835"
+                    Point3="46.5833324951431,58.8421046170835" />
+                  <mssgle:LineSegment
+                    End="9.95833364066982,58.8421046170835" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.39194577639309,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de FactVenta.Paths[Data Conversion Output]"
+          TopLeft="238.124989354983,191.596489402534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.12499963678451,65.1052623991324"
+              Start="0,0"
+              End="0.624999636784509,65.1052623991324">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-46.6249987427145,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.6249987427145,0"
+                    Point2="-50.6249987427145,0"
+                    Point3="-50.6249987427145,4" />
+                  <mssgle:LineSegment
+                    End="-50.6249987427145,61.1052623991324" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-50.6249987427145,61.1052623991324"
+                    Point2="-50.6249987427145,65.1052623991324"
+                    Point3="-46.6249987427145,65.1052623991324" />
+                  <mssgle:LineSegment
+                    End="0.624999636784509,65.1052623991324" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Magento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave FechaOrden">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimFecha]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimPromocion]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\NanoDW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimFecha]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
