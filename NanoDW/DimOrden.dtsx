@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{8458832D-6587-496C-84C6-AB238F937278}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{6E14F540-83D7-45DC-9FCB-6B7A7461F5BF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADLuc1ce/WGQbtbDiWsQST3N1aOJgAoVwxtCdGTz1CcqQAAAAAOgAAAAAIAACAAAAD7iPigrjw5Vt31VzADKTbtYzYJQlnBZMUZARf0yQp8rxAAAABEp+XgPYIlUS8hIMZ70wfCQAAAAC7/MIFSu5RAOIsHzsW6xJeKJM/WKH2AO728rQTA6PK5PF8SlI7evMFpnkvBeHtC5h/738Ef7O4YF+0CXAF5TLA</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABVV3IrqgfZ19L0DaZOuWpNYPp6tyK4nB1fWpJM5STzXAAAAAAOgAAAAAIAACAAAACAKloSsGVYAvqL0S5sWnsTpwT1vVrpHB4bhbdXKxkfHBAAAACmXv2H3ENYcK70DpBuvCXBQAAAAGF6ionrmpH9IbrAUziyXdD8VYfEYzUiRdaTCv9sP2U7ekFu0+lY8e1N12bRLaqu4rUb4AWGcTQv51r3FnNf4RI</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1065,7 +1065,7 @@ where [refTable].[OrdenID] = ?</property>
 		WHEN 'purchaseorder' then 'Orden de Compra'
 		ELSE 'No Definido' END as metodo_pago,
 	billing_address AS direccion_facturacion,
-	shipping_address AS direccion_envio,
+	IFNULL(shipping_address,billing_address) AS direccion_envio,
 	CASE shipping_information
 		WHEN 'Flat Rate - Fixed' then 'Tarifa Plana'
 		WHEN 'Free Shipping - Free' then 'Envio Gratuito'
@@ -1427,15 +1427,15 @@ FROM magento.sales_invoice_grid
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="222.666666666667,42.6666666666667"
+          Size="222.4,42.4"
           Id="Package\Delete DimOrden en NanoDW"
           TopLeft="71.4583301388968,58.6140344441487" />
         <NodeLayout
-          Size="184,42.6666666666667"
+          Size="184,42.4"
           Id="Package\Llenado de DimOrden"
           TopLeft="330.833318543932,202.29824339284" />
         <NodeLayout
-          Size="200.666666666667,42.6666666666667"
+          Size="200.8,42.4"
           Id="Package\Reiniciar autoincremental"
           TopLeft="230.624989690259,123.157893384593" />
         <EdgeLayout
@@ -1509,23 +1509,23 @@ FROM magento.sales_invoice_grid
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="189.333333333334,42.6666666666667"
+          Size="189.6,42.4"
           Id="Package\Llenado de DimOrden\Insercion en DimOrden"
           TopLeft="113.124994942918,209.236840576469" />
         <NodeLayout
-          Size="213.333333333334,42.6666666666667"
+          Size="213.6,42.4"
           Id="Package\Llenado de DimOrden\Busqueda de orden si existe"
           TopLeft="279.999987483025,115.631577677757" />
         <NodeLayout
-          Size="192,42.6666666666667"
+          Size="192,42.4"
           Id="Package\Llenado de DimOrden\Conversion de OrdenID"
           TopLeft="283.749987315387,23.9473681581152" />
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
+          Size="121.6,42.4"
           Id="Package\Llenado de DimOrden\Magento"
           TopLeft="60.624997289851,20.5263155640983" />
         <NodeLayout
-          Size="209.333333333334,42.6666666666667"
+          Size="209.6,42.4"
           Id="Package\Llenado de DimOrden\Actualizacion de DimOrden"
           TopLeft="477.847200860787,206.175436332726" />
         <EdgeLayout

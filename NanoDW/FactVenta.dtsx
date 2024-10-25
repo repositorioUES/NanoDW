@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="FactVenta"
   DTS:PackageType="5"
-  DTS:VersionBuild="119"
-  DTS:VersionGUID="{8E296F4B-5440-4EBA-AADE-5D3CD880CD17}">
+  DTS:VersionBuild="124"
+  DTS:VersionGUID="{BBD47C8D-6206-46A8-AED6-767FBFFC242B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADTEJLVcgguambsa9qhd9jhXrtJbZUHW6mxc+WmuGDYqAAAAAAOgAAAAAIAACAAAADsbJQEnpddb8He5vU+Ix7yW6AXoNbyXHiMjlP0SHaqkhAAAAC9nrbEZSEEuRzDdQTCLRZKQAAAAIk4tQNvdMM0GlD1OQHHs6kjfppG7btDnJsnBQgkACWBYs0tyW9BLuDbHxM6B68zFZeb78m4YVF+X2Ldd5mu4fs</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACOht2fv2wjrAA7FJpTBSSTyVWjdqaLM5jziNg5uZZLoQAAAAAOgAAAAAIAACAAAAAdbtB3+Q5vf5ZMoUMRz9R3P21Fja6csmFRWxzVbdqT7BAAAAC7GnooydxXSgVd8qocMSnIQAAAAFApt7p/G6Uc9hwD0S6+LmsBEd5hn/cIsiTOo1kuR0cCf8TF301ELNAtxRtY/9I33amB8uXUnFNlAZS/U897PLc</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -123,7 +123,7 @@
     IFNULL(CAST(so.applied_rule_ids + 1 AS SIGNED),1) AS PromocionID,  -- DimPromocion,
     CAST(si.order_id AS SIGNED) AS OrdenID,   -- DimOrden
     CONVERT(CONCAT(YEAR(so.created_at), LPAD(MONTH(so.created_at), 2, '0'), LPAD(DAY(so.created_at), 2, '0')), SIGNED) AS FechaOrden,
-    CONVERT(CONCAT(YEAR(so.updated_at), LPAD(MONTH(so.updated_at), 2, '0'), LPAD(DAY(so.updated_at), 2, '0')), SIGNED) AS FechaEnvio,
+    CONVERT(CONCAT(YEAR(so.updated_at), LPAD(MONTH(so.updated_at), 2, '0'), LPAD(DAY(so.updated_at), 2, '0')), SIGNED) AS FechaFacturacionEnvio,
     -- so.updated_at AS FechaEnvio,
     sii.qty AS Cantidad,
     sii.base_price AS precio_unitario_regular,
@@ -133,17 +133,17 @@
 FROM magento.sales_invoice_item sii
 	INNER JOIN magento.sales_invoice si ON sii.parent_id=si.entity_id
     INNER JOIN magento.sales_order so ON si.order_id=so.entity_id
-  WHERE CAST(so.created_at AS CHAR) &gt; '"+(DT_WSTR, 100)@[User::UltimaFechaEjecucion]+"'"</DTS:PropertyExpression>
+  WHERE CAST(so.updated_at AS CHAR) &gt; '"+(DT_WSTR, 100)@[User::UltimaFechaEjecucion]+"'"</DTS:PropertyExpression>
       <DTS:ObjectData>
         <pipeline
           version="1">
           <components>
             <component
-              refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio"
+              refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Busqueda de llave FechaEnvio"
+              name="Busqueda de llave FechaFacturacionEnvio"
               usesDispositions="true"
               version="6">
               <properties>
@@ -195,7 +195,7 @@ where [refTable].[FechaKey] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]};</property>
+                  name="ParameterMap">#{Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaFacturacionEnvio]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -207,7 +207,7 @@ where [refTable].[FechaKey] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Connections[OleDbConnection]"
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[OLEDBNanoDW]"
                   connectionManagerRefId="Package.ConnectionManagers[OLEDBNanoDW]"
                   description="Connection manager used to access lookup data."
@@ -215,14 +215,14 @@ where [refTable].[FechaKey] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]"
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input].Columns[newFechaEnvio]"
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Inputs[Lookup Input].Columns[newFechaFacturacionEnvio]"
                       cachedDataType="i4"
-                      cachedName="newFechaEnvio"
-                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]">
+                      cachedName="newFechaFacturacionEnvio"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaFacturacionEnvio]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -240,19 +240,19 @@ where [refTable].[FechaKey] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output]"
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output].Columns[FechaEnvioKey]"
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Match Output].Columns[FechaFacturacionEnvioKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output].Columns[FechaEnvioKey]"
-                      name="FechaEnvioKey"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Match Output].Columns[FechaFacturacionEnvioKey]"
+                      name="FechaFacturacionEnvioKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -265,30 +265,30 @@ where [refTable].[FechaKey] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup No Match Output]"
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output]"
+                  refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1124,10 +1124,10 @@ where [refTable].[PromocionID] = ?</property>
                       cachedName="FechaOrden"
                       lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaOrden]" />
                     <inputColumn
-                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[FechaEnvio]"
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input].Columns[FechaFacturacionEnvio]"
                       cachedDataType="i8"
-                      cachedName="FechaEnvio"
-                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]" />
+                      cachedName="FechaFacturacionEnvio"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaFacturacionEnvio]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1240,19 +1240,19 @@ where [refTable].[PromocionID] = ?</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]"
+                      refId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaFacturacionEnvio]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaEnvio]"
-                      name="newFechaEnvio"
+                      lineageId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Outputs[Data Conversion Output].Columns[newFechaFacturacionEnvio]"
+                      name="newFechaFacturacionEnvio"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaFacturacionEnvio]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -1306,7 +1306,7 @@ where [refTable].[PromocionID] = ?</property>
     IFNULL(CAST(so.applied_rule_ids + 1 AS SIGNED),1) AS PromocionID,  -- DimPromocion,
     CAST(si.order_id AS SIGNED) AS OrdenID,   -- DimOrden
     CONVERT(CONCAT(YEAR(so.created_at), LPAD(MONTH(so.created_at), 2, '0'), LPAD(DAY(so.created_at), 2, '0')), SIGNED) AS FechaOrden,
-    CONVERT(CONCAT(YEAR(so.updated_at), LPAD(MONTH(so.updated_at), 2, '0'), LPAD(DAY(so.updated_at), 2, '0')), SIGNED) AS FechaEnvio,
+    CONVERT(CONCAT(YEAR(so.updated_at), LPAD(MONTH(so.updated_at), 2, '0'), LPAD(DAY(so.updated_at), 2, '0')), SIGNED) AS FechaFacturacionEnvio,
     -- so.updated_at AS FechaEnvio,
     sii.qty AS Cantidad,
     sii.base_price AS precio_unitario_regular,
@@ -1316,7 +1316,7 @@ where [refTable].[PromocionID] = ?</property>
 FROM magento.sales_invoice_item sii
 	INNER JOIN magento.sales_invoice si ON sii.parent_id=si.entity_id
     INNER JOIN magento.sales_order so ON si.order_id=so.entity_id
-  WHERE CAST(so.created_at AS CHAR) &gt; ''</property>
+  WHERE CAST(so.updated_at AS CHAR) &gt; ''</property>
                 <property
                   dataType="System.Int32"
                   description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
@@ -1399,13 +1399,13 @@ FROM magento.sales_invoice_item sii
                       name="FechaOrden"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]"
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaFacturacionEnvio]"
                       dataType="i8"
                       errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaEnvio]"
-                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaEnvio]"
-                      name="FechaEnvio"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaFacturacionEnvio]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[FechaFacturacionEnvio]"
+                      name="FechaFacturacionEnvio"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[Cantidad]"
@@ -1486,9 +1486,9 @@ FROM magento.sales_invoice_item sii
                       dataType="i8"
                       name="FechaOrden" />
                     <externalMetadataColumn
-                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaEnvio]"
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[FechaFacturacionEnvio]"
                       dataType="i8"
-                      name="FechaEnvio" />
+                      name="FechaFacturacionEnvio" />
                     <externalMetadataColumn
                       refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad]"
                       dataType="numeric"
@@ -1552,10 +1552,10 @@ FROM magento.sales_invoice_item sii
                       lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaOrden]"
                       name="FechaOrden" />
                     <outputColumn
-                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaEnvio]"
+                      refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaFacturacionEnvio]"
                       dataType="i8"
-                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaEnvio]"
-                      name="FechaEnvio" />
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[FechaFacturacionEnvio]"
+                      name="FechaFacturacionEnvio" />
                     <outputColumn
                       refId="Package\Llenado de FactVenta\Magento.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad]"
                       dataType="numeric"
@@ -1666,6 +1666,14 @@ FROM magento.sales_invoice_item sii
                       externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
                       lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[Cantidad]" />
                     <inputColumn
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[precio_unitario_regular]"
+                      cachedDataType="numeric"
+                      cachedName="precio_unitario_regular"
+                      cachedPrecision="20"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unitario_regular]"
+                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_unitario_regular]" />
+                    <inputColumn
                       refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[precio_extendido]"
                       cachedDataType="numeric"
                       cachedName="precio_extendido"
@@ -1720,19 +1728,11 @@ FROM magento.sales_invoice_item sii
                       externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaOrdenKey]"
                       lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output].Columns[FechaOrdenKey]" />
                     <inputColumn
-                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[FechaEnvioKey]"
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[FechaFacturacionEnvioKey]"
                       cachedDataType="i4"
-                      cachedName="FechaEnvioKey"
-                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaEnvioKey]"
-                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output].Columns[FechaEnvioKey]" />
-                    <inputColumn
-                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].Columns[precio_unitario_regular]"
-                      cachedDataType="numeric"
-                      cachedName="precio_unitario_regular"
-                      cachedPrecision="20"
-                      cachedScale="4"
-                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[precio_unitario_regular]"
-                      lineageId="Package\Llenado de FactVenta\Magento.Outputs[Salida de origen de ADO NET].Columns[precio_unitario_regular]" />
+                      cachedName="FechaFacturacionEnvioKey"
+                      externalMetadataColumnId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaFacturacionEnvioKey]"
+                      lineageId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Match Output].Columns[FechaFacturacionEnvioKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1757,9 +1757,9 @@ FROM magento.sales_invoice_item sii
                       dataType="i4"
                       name="FechaOrdenKey" />
                     <externalMetadataColumn
-                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaEnvioKey]"
+                      refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[FechaFacturacionEnvioKey]"
                       dataType="i4"
-                      name="FechaEnvioKey" />
+                      name="FechaFacturacionEnvioKey" />
                     <externalMetadataColumn
                       refId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET].ExternalColumns[cantidad]"
                       dataType="i4"
@@ -1845,14 +1845,14 @@ FROM magento.sales_invoice_item sii
               startId="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Llenado de FactVenta.Paths[Lookup Match Output4]"
-              endId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Inputs[Lookup Input]"
+              endId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Llenado de FactVenta\Busqueda de llave FechaOrden.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Llenado de FactVenta.Paths[Lookup Match Output5]"
               endId="Package\Llenado de FactVenta\NanoDW.Inputs[Entrada de destino de ADO NET]"
               name="Lookup Match Output"
-              startId="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio.Outputs[Lookup Match Output]" />
+              startId="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Llenado de FactVenta.Paths[Salida de origen de ADO NET]"
               endId="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas.Inputs[Data Conversion Input]"
@@ -1894,15 +1894,15 @@ FROM magento.sales_invoice_item sii
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="241.333333333334,42.6666666666667"
+          Size="241.6,42.4"
           Id="Package\Actualizar Fecha Ultima Ejecucion"
-          TopLeft="374.374983264134,288.73683893499" />
+          TopLeft="375.208316551936,288.73683893499" />
         <NodeLayout
-          Size="158.666666666667,42.6666666666667"
+          Size="158.4,42.4"
           Id="Package\Leer Parametros"
           TopLeft="143.124993601814,70.4736834367392" />
         <NodeLayout
-          Size="184,42.6666666666667"
+          Size="184,42.4"
           Id="Package\Llenado de FactVenta"
           TopLeft="194.999991282821,176.52631385125" />
         <EdgeLayout
@@ -1941,30 +1941,30 @@ FROM magento.sales_invoice_item sii
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="286.999991282821,219.192980517916">
+          TopLeft="286.999991282821,218.92631385125">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="208.04165864798,69.5438584170735"
+              EndConnector="209.008325269115,69.8105250837399"
               Start="0,0"
-              End="208.04165864798,62.0438584170735">
+              End="209.008325269115,62.3105250837399">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.7719292085367" />
+                    End="0,30.90526254187" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.7719292085367"
-                    Point2="0,34.7719292085367"
-                    Point3="4,34.7719292085367" />
+                    Point1="0,30.90526254187"
+                    Point2="0,34.90526254187"
+                    Point3="4,34.90526254187" />
                   <mssgle:LineSegment
-                    End="204.04165864798,34.7719292085367" />
+                    End="205.008325269115,34.90526254187" />
                   <mssgle:CubicBezierSegment
-                    Point1="204.04165864798,34.7719292085367"
-                    Point2="208.04165864798,34.7719292085367"
-                    Point3="208.04165864798,38.7719292085367" />
+                    Point1="205.008325269115,34.90526254187"
+                    Point2="209.008325269115,34.90526254187"
+                    Point3="209.008325269115,38.90526254187" />
                   <mssgle:LineSegment
-                    End="208.04165864798,62.0438584170735" />
+                    End="209.008325269115,62.3105250837399" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1982,39 +1982,39 @@ FROM magento.sales_invoice_item sii
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="280,42.6666666666667"
+          Size="280,42.4"
           Id="Package\Llenado de FactVenta\Conversion de todas las llaves surrogadas"
           TopLeft="238.124989354983,170.2631560692" />
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
+          Size="121.6,42.4"
           Id="Package\Llenado de FactVenta\Magento"
           TopLeft="308.124986225739,60.3157890529844" />
         <NodeLayout
-          Size="229.333333333334,42"
+          Size="229.6,41.6"
           Id="Package\Llenado de FactVenta\Busqueda de llave FechaOrden"
           TopLeft="263.124988237395,479.403503603333" />
         <NodeLayout
-          Size="269.333333333334,42.6666666666667"
+          Size="269.6,42.4"
           Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimOrden"
           TopLeft="242.499989159406,422.842100620436" />
         <NodeLayout
-          Size="290.666666666667,42.6666666666667"
+          Size="290.4,42.4"
           Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimPromocion"
           TopLeft="238.124989354983,358.526311852926" />
         <NodeLayout
-          Size="122.666666666667,42.6666666666667"
+          Size="122.4,42.4"
           Id="Package\Llenado de FactVenta\NanoDW"
           TopLeft="322.499985583127,642.24561021874" />
         <NodeLayout
-          Size="226.666666666667,42.6666666666667"
-          Id="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio"
-          TopLeft="264.374988181517,534.175433668295" />
+          Size="276,41.6"
+          Id="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio"
+          TopLeft="246.874989137675,556.708766844934" />
         <NodeLayout
-          Size="273.333333333334,42.6666666666667"
+          Size="273.6,42.4"
           Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimCliente"
           TopLeft="246.249988991767,235.368418468333" />
         <NodeLayout
-          Size="282.666666666667,42.6666666666667"
+          Size="282.4,42.4"
           Id="Package\Llenado de FactVenta\Busqueda de llave surrogada DimProducto"
           TopLeft="239.374989299104,294.210523085416" />
         <EdgeLayout
@@ -2053,61 +2053,49 @@ FROM magento.sales_invoice_item sii
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Llenado de FactVenta.Paths[Lookup Match Output5]"
-          TopLeft="380.770820215655,576.842100334961">
+          TopLeft="384.287487360401,598.308766844934">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,65.4035098837792"
+              EndConnector="0,43.9368433738058"
               Start="0,0"
-              End="0,57.9035098837792">
+              End="0,36.4368433738058">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.9035098837792" />
+                    End="0,36.4368433738058" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,23.1470674418896,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,12.4137341869029,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Llenado de FactVenta.Paths[Lookup Match Output4]"
-          TopLeft="492.458321570729,500.403503603333">
+          TopLeft="381.399988687535,521.003503603333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-1.4166667225453,55.1052633982948"
+              EndConnector="0,35.7052632416012"
               Start="0,0"
-              End="6.0833332774547,55.1052633982948">
+              End="0,28.2052632416012">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="52.8749984633179,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="52.8749984633179,0"
-                    Point2="56.8749984633179,0"
-                    Point3="56.8749984633179,4" />
-                  <mssgle:LineSegment
-                    End="56.8749984633179,51.1052633982948" />
-                  <mssgle:CubicBezierSegment
-                    Point1="56.8749984633179,51.1052633982948"
-                    Point2="56.8749984633179,55.1052633982948"
-                    Point3="52.8749984633179,55.1052633982948" />
-                  <mssgle:LineSegment
-                    End="6.0833332774547,55.1052633982948" />
+                    End="0,28.2052632416012" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="8.6836117445679,-17.609375,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,8.29794412080059,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2378,12 +2366,12 @@ FROM magento.sales_invoice_item sii
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Llenado de FactVenta\Busqueda de llave FechaEnvio">
+    design-time-name="Package\Llenado de FactVenta\Busqueda de llave FechaFacturacionEnvio">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2393,7 +2381,7 @@ FROM magento.sales_invoice_item sii
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
