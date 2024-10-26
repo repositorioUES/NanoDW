@@ -97,5 +97,24 @@ CREATE TABLE Parametros(
 	NombreParametro varchar(25) not null,
 	ValorParametro varchar(100) not null
 )
+go
+
+
+CREATE TABLE FactCompras (
+	ProductoKey int not null foreign key references DimProducto(ProductoKey),
+	StockMinimo int not null default (0),
+	StockTienda int not null default (0),
+	StockTotal int not null default (0),
+	FechaSnapshot datetime default getdate()
+)
+go
+
+--Tabla auxiliar para realizar el Snapshot
+create table AuxSnapshot(
+	ProductoId int not null,
+	StockMinimo int not null default (0),
+	StockTienda int not null default (0),
+	StockTotal int not null default (0),
+)
 
 
