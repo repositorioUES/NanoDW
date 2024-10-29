@@ -1,0 +1,1292 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/18/2024 10:28:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-BADT8MI8"
+  DTS:CreatorName="LAPTOP-BADT8MI8\Nathaly!"
+  DTS:DTSID="{1A6D7D36-B197-47A3-AAE2-182486B8BE5A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{A4C00B08-19FB-43B7-8832-6412624E4848}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[.NanoDW.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{33A9545C-6DDB-4F78-9C54-258B2F9B21DD}"
+      DTS:ObjectName=".NanoDW.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=EMILIO\SQLEXPRESS;Initial Catalog=NanoDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{33A9545C-6DDB-4F78-9C54-258B2F9B21DD}LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{7CD0EF83-7DEB-4671-BBB2-A11790763611}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Dell\Downloads\Publicidad_Emi\Publicidad_Emi\Gestion Publicidad Nano Electrónicos.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6B81C05A-0F09-43AE-93A8-909B1D688492}"
+      DTS:ObjectName="LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=EMILIO\SQLEXPRESS;Initial Catalog=NanoDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{6B81C05A-0F09-43AE-93A8-909B1D688492}LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Delete DimRedes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c8c7d02b-675a-4c68-9a40-558a44ffcab5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete DimRedes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6B81C05A-0F09-43AE-93A8-909B1D688492}"
+          SQLTask:SqlStatementSource="DELETE FROM DimRedes&#xA;DBCC CHECKIDENT ('DimRedes', RESEED, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado de Redes Sociales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B44117EB-6A16-4320-A105-451B180A847F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado de Redes Sociales">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado de Redes Sociales\Actualizar si existe"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Actualizar si existe"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC ActualizarRedes ?,?,?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de Redes Sociales\Actualizar si existe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].Columns[RedesKey]"
+                      cachedDataType="i4"
+                      cachedName="RedesKey"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].ExternalColumns[@RedesKey]"
+                      lineageId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[RedesKey]" />
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].Columns[Copy of nombre_red_social]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombre_red_social"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].ExternalColumns[@nombre_red_social]"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of nombre_red_social]" />
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].Columns[codigo_publicidad]"
+                      cachedDataType="i4"
+                      cachedName="codigo_publicidad"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].ExternalColumns[@RedesID]"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].ExternalColumns[@RedesKey]"
+                      dataType="i4"
+                      name="@RedesKey">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].ExternalColumns[@RedesID]"
+                      dataType="i4"
+                      name="@RedesID">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input].ExternalColumns[@nombre_red_social]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@nombre_red_social">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Actualizar si existe.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Actualizar si existe.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Actualizar si existe.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Actualizar si existe.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Actualizar si existe.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de Red si Existe"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimRedes WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimRedes WHERE Activo =1) [refTable]
+where [refTable].[RedesID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="RedesKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RedesID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre_red_social" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Inputs[Lookup Input].Columns[codigo_publicidad]"
+                      cachedDataType="i4"
+                      cachedName="codigo_publicidad"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">RedesID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[RedesKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[RedesKey]"
+                      name="RedesKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">RedesKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      name="Activo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Activo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      name="FechaActualizacion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FechaActualizacion</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de Redes Sociales\Columna Derivada"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Columna Derivada"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de Redes Sociales\Columna Derivada.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Columna Derivada.Inputs[Derived Column Input].Columns[nombre_red_social]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_red_social"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Columna Derivada.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Output].Columns[auxiliarCodigoRedes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Output].Columns[auxiliarCodigoRedes]"
+                      name="auxiliarCodigoRedes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]} == "Facebook Ads" ? 1 : #{Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]} == "Instagram" ? 2 : 3</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">nombre_red_social == "Facebook Ads" ? 1 : nombre_red_social == "Instagram" ? 2 : 3</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Columna Derivada.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de Redes Sociales\Conversion de Datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de Datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input].Columns[nombre_red_social]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_red_social"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]" />
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input].Columns[auxiliarCodigoRedes]"
+                      cachedDataType="i4"
+                      cachedName="auxiliarCodigoRedes"
+                      lineageId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Output].Columns[auxiliarCodigoRedes]" />
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input].Columns[codigo_publicidad]"
+                      cachedDataType="i4"
+                      cachedName="codigo_publicidad"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of nombre_red_social]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of nombre_red_social]"
+                      name="Copy of nombre_red_social"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of auxiliarCodigoRedes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of auxiliarCodigoRedes]"
+                      name="Copy of auxiliarCodigoRedes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Output].Columns[auxiliarCodigoRedes]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of codigo_publicidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of codigo_publicidad]"
+                      name="Copy of codigo_publicidad"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de Redes Sociales\Guardar NanoDW"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Guardar NanoDW"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimRedes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[.NanoDW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].Columns[Copy of nombre_red_social]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombre_red_social"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[nombre_red_social]"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of nombre_red_social]" />
+                    <inputColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].Columns[Copy of auxiliarCodigoRedes]"
+                      cachedDataType="i4"
+                      cachedName="Copy of auxiliarCodigoRedes"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[RedesID]"
+                      lineageId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of auxiliarCodigoRedes]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[RedesKey]"
+                      dataType="i4"
+                      name="RedesKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[RedesID]"
+                      dataType="i4"
+                      name="RedesID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[nombre_red_social]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="nombre_red_social" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      dataType="bool"
+                      name="Activo" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input].ExternalColumns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      name="FechaActualizacion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Guardar NanoDW.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Guardar NanoDW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Guardar NanoDW.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado de Redes Sociales\Leer excel de Redes"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Leer excel de Redes"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">publicidad$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[codigo_publicidad]"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[codigo_publicidad]"
+                      name="codigo_publicidad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[nombre_red_social]"
+                      length="255"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].Columns[nombre_red_social]"
+                      name="nombre_red_social"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[codigo_publicidad]"
+                      dataType="r8"
+                      name="codigo_publicidad" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[nombre_red_social]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre_red_social" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[nombre_campaña]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre_campaña" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[tipo_publicidad]"
+                      dataType="wstr"
+                      length="255"
+                      name="tipo_publicidad" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[medio_publicidad]"
+                      dataType="wstr"
+                      length="255"
+                      name="medio_publicidad" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[duracion_publicidad]"
+                      dataType="wstr"
+                      length="255"
+                      name="duracion_publicidad" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[fecha_inicio]"
+                      dataType="date"
+                      name="fecha_inicio" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[fecha_finalizacion]"
+                      dataType="date"
+                      name="fecha_finalizacion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[costo_total]"
+                      dataType="r8"
+                      name="costo_total" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[alcance]"
+                      dataType="r8"
+                      name="alcance" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[frecuencia]"
+                      dataType="r8"
+                      name="frecuencia" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[clics]"
+                      dataType="r8"
+                      name="clics" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[conversion]"
+                      dataType="r8"
+                      name="conversion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[ingresos_generados]"
+                      dataType="r8"
+                      name="ingresos_generados" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[roi]"
+                      dataType="r8"
+                      name="roi" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[roas]"
+                      dataType="r8"
+                      name="roas" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output].ExternalColumns[categoria_id]"
+                      dataType="r8"
+                      name="categoria_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[codigo_publicidad]"
+                      dataType="r8"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[codigo_publicidad]"
+                      name="codigo_publicidad" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[nombre_red_social]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[nombre_red_social]"
+                      name="nombre_red_social" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado de Redes Sociales.Paths[Data Conversion Output]"
+              endId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado de Redes Sociales\Conversion de Datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado de Redes Sociales.Paths[Derived Column Output]"
+              endId="Package\Llenado de Redes Sociales\Conversion de Datos.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Llenado de Redes Sociales\Columna Derivada.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Llenado de Redes Sociales.Paths[Excel Source Output]"
+              endId="Package\Llenado de Redes Sociales\Columna Derivada.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Llenado de Redes Sociales\Leer excel de Redes.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Llenado de Redes Sociales.Paths[Lookup Match Output]"
+              endId="Package\Llenado de Redes Sociales\Actualizar si existe.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado de Redes Sociales.Paths[Lookup No Match Output]"
+              endId="Package\Llenado de Redes Sociales\Guardar NanoDW.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Llenado de Redes Sociales\Busqueda de Red si Existe.Outputs[Lookup No Match Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8D08BF2B-7D64-41C2-9CAE-FD990BF9224F}"
+      DTS:From="Package\Delete DimRedes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Llenado de Redes Sociales" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165.333333333334,42"
+          Id="Package\Delete DimRedes"
+          TopLeft="86.5,48.5" />
+        <NodeLayout
+          Size="213.333333333334,42"
+          Id="Package\Llenado de Redes Sociales"
+          TopLeft="428.5,125.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="169,90.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="366,35"
+              Start="0,0"
+              End="366,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="362,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="362,17.5"
+                    Point2="366,17.5"
+                    Point3="366,21.5" />
+                  <mssgle:LineSegment
+                    End="366,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Llenado de Redes Sociales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Llenado de Redes Sociales\Leer excel de Redes"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Llenado de Redes Sociales\Guardar NanoDW"
+          TopLeft="251.5,226.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Llenado de Redes Sociales\Columna Derivada"
+          TopLeft="112,113" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Llenado de Redes Sociales\Conversion de Datos"
+          TopLeft="341.5,48.5" />
+        <EdgeLayout
+          Id="Package\Llenado de Redes Sociales.Paths[Excel Source Output]"
+          TopLeft="95.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.5,65.5"
+              Start="0,0"
+              End="101.5,58">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.75"
+                    Point2="0,32.75"
+                    Point3="4,32.75" />
+                  <mssgle:LineSegment
+                    End="97.5,32.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="97.5,32.75"
+                    Point2="101.5,32.75"
+                    Point3="101.5,36.75" />
+                  <mssgle:LineSegment
+                    End="101.5,58" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de Redes Sociales.Paths[Derived Column Output]"
+          TopLeft="282,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.5,-64.5"
+              Start="0,0"
+              End="52,-64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.75,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.75,0"
+                    Point2="29.75,0"
+                    Point3="29.75,-4" />
+                  <mssgle:LineSegment
+                    End="29.75,-60.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.75,-60.5"
+                    Point2="29.75,-64.5"
+                    Point3="33.75,-64.5" />
+                  <mssgle:LineSegment
+                    End="52,-64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Llenado de Redes Sociales\Busqueda de Red si Existe"
+          TopLeft="384.5,130.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Llenado de Redes Sociales\Actualizar si existe"
+          TopLeft="519.5,227.21875" />
+        <EdgeLayout
+          Id="Package\Llenado de Redes Sociales.Paths[Data Conversion Output]"
+          TopLeft="432.5,90.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.5,40"
+              Start="0,0"
+              End="57.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="53.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.5,20"
+                    Point2="57.5,20"
+                    Point3="57.5,24" />
+                  <mssgle:LineSegment
+                    End="57.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de Redes Sociales.Paths[Lookup Match Output]"
+          TopLeft="523.833333333333,172.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.6666666666667,54.71875"
+              Start="0,0"
+              End="80.6666666666667,47.21875">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.1345837253058" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.1345837253058"
+                    Point2="0,22.1345837253058"
+                    Point3="4,22.1345837253058" />
+                  <mssgle:LineSegment
+                    End="76.6666666666667,22.1345837253058" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.6666666666667,22.1345837253058"
+                    Point2="80.6666666666667,22.1345837253058"
+                    Point3="80.6666666666667,26.1345837253058" />
+                  <mssgle:LineSegment
+                    End="80.6666666666667,47.21875" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-7.85805338541663,27.1345837253058,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado de Redes Sociales.Paths[Lookup No Match Output]"
+          TopLeft="456.166666666667,172.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-121.166666666667,54"
+              Start="0,0"
+              End="-121.166666666667,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8438381937912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8438381937912"
+                    Point2="0,21.8438381937912"
+                    Point3="-4,21.8438381937912" />
+                  <mssgle:LineSegment
+                    End="-117.166666666667,21.8438381937912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-117.166666666667,21.8438381937912"
+                    Point2="-121.166666666667,21.8438381937912"
+                    Point3="-121.166666666667,25.8438381937912" />
+                  <mssgle:LineSegment
+                    End="-121.166666666667,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-116.389720052083,26.8438381937912,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de Redes Sociales\Guardar NanoDW">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de Redes Sociales\Busqueda de Red si Existe">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado de Redes Sociales\Leer excel de Redes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
