@@ -116,5 +116,57 @@ create table AuxSnapshot(
 	StockTienda int not null default (0),
 	StockTotal int not null default (0),
 )
+go
+
+CREATE TABLE DimCampaniaPublicitaria(
+	CampaniaPublicitariaKey int NOT NULL primary key IDENTITY(1,1),
+	CampaniaPublicitariaID int NOT NULL,
+	nombre_campania varchar(255) NOT NULL,
+	tipo_publicidad varchar(255) NOT NULL,
+	medio_publicidad varchar(255) NOT NULL,
+	duracion_publicidad varchar(255) NOT NULL,
+	fecha_inicio date NOT NULL,
+	fecha_finalizacion date NOT NULL,
+	costo_total decimal(10, 2) NOT NULL,
+	FechaActualizacion datetime NULL,
+	Activo bit not null default 1
+) 
+GO
+
+CREATE TABLE DimCategoria(
+	CategoriaKey int NOT NULL primary key IDENTITY(1,1),
+	CategoriaID int NOT NULL,
+	nombreCategoria varchar(255) NOT NULL,
+	FechaActualizacion datetime not null default getdate(),
+	Activo bit not null default 1
+) 
+GO
+
+CREATE TABLE DimRedes(
+	RedesKey int NOT NULL primary key IDENTITY(1,1),
+	RedesID int NOT NULL,
+	nombre_red_social varchar(255) NOT NULL,
+	Activo bit not null default 1,
+	FechaActualizacion datetime NULL
+) 
+GO
+
+CREATE TABLE FactPublicidad(
+	CategoriaKey int not null foreign key references DimCategoria(CategoriaKey),
+	ProductoKey int not null foreign key references DimProducto(ProductoKey),
+	RedesKey int not null foreign key references DimRedes(RedesKey),
+	CampaniaPublicitariaKey int not null foreign key references DimCampaniaPublicitaria(CampaniaPublicitariaKey),
+	alcance int NOT NULL,
+	frecuencia int NOT NULL,
+	clics int NOT NULL,
+	conversion int NOT NULL,
+	ingresos_generados int NOT NULL,
+	CPM decimal(10, 2) NULL,
+	CPC decimal(10, 2) NULL,
+	CTR decimal(10, 2) NULL,
+	date_key int NULL,
+	costo_total decimal(10, 0) NULL
+) 
+
 
 
