@@ -128,7 +128,7 @@ CREATE TABLE DimCampaniaPublicitaria(
 	fecha_inicio date NOT NULL,
 	fecha_finalizacion date NOT NULL,
 	costo_total decimal(10, 2) NOT NULL,
-	FechaActualizacion datetime NULL,
+	FechaActualizacion datetime NOT NULL default getdate(),
 	Activo bit not null default 1
 ) 
 GO
@@ -147,7 +147,7 @@ CREATE TABLE DimRedes(
 	RedesID int NOT NULL,
 	nombre_red_social varchar(255) NOT NULL,
 	Activo bit not null default 1,
-	FechaActualizacion datetime NULL
+	FechaActualizacion datetime NOT NULL default getdate()
 ) 
 GO
 
@@ -165,7 +165,7 @@ CREATE TABLE FactPublicidad(
 	CPC decimal(10, 2) NOT NULL,
 	CTR decimal(10, 2) NOT NULL,
 	date_key int NOT NULL,
-	costo_total decimal(10, 0) NOT NULL
+	costo_total decimal(10, 2) NOT NULL
 ) 
 go
 
