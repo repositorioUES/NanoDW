@@ -167,6 +167,19 @@ CREATE TABLE FactPublicidad(
 	date_key int NOT NULL,
 	costo_total decimal(10, 0) NOT NULL
 ) 
+go
+
+CREATE TABLE AuxSnapshotPub(
+	codigo_publicidad int NOT NULL,
+	alcance int NOT NULL,
+	frecuencia int NOT NULL,
+	clics int NOT NULL,
+	conversion int NOT NULL,
+	ingresos_generados int NOT NULL,
+	categoria_ïd int NOT NULL,
+	nombre_red_social varchar(255) NOT NULL,
+	costo_total decimal(10, 2) NOT NULL
+)
 
 
 
