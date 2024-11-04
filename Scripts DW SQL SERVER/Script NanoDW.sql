@@ -161,11 +161,11 @@ CREATE TABLE FactPublicidad(
 	clics int NOT NULL,
 	conversion int NOT NULL,
 	ingresos_generados int NOT NULL,
-	CPM decimal(10, 2) NULL,
-	CPC decimal(10, 2) NULL,
-	CTR decimal(10, 2) NULL,
-	date_key int NULL,
-	costo_total decimal(10, 0) NULL
+	CPM decimal(10, 2) NOT NULL,
+	CPC decimal(10, 2) NOT NULL,
+	CTR decimal(10, 2) NOT NULL,
+	date_key int NOT NULL,
+	costo_total decimal(10, 0) NOT NULL
 ) 
 
 
