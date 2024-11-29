@@ -181,5 +181,9 @@ CREATE TABLE AuxSnapshotPub(
 	costo_total decimal(10, 2) NOT NULL
 )
 
-
+CREATE TABLE catalog_category_product(
+	category_id int NOT NULL,
+	product_id int NOT NULL,
+	position int NOT NULL
+)
 
