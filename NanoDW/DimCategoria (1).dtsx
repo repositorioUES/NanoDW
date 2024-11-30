@@ -1,0 +1,1720 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2024 8:44:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="JAGGER"
+  DTS:CreatorName="JAGGER\Christian"
+  DTS:DTSID="{3487BC8C-569F-4619-9FD6-4E69EB5D689A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="22538"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="162"
+  DTS:VersionGUID="{CB166FDB-AB79-4067-8AA4-2BE477BEE8E3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[127.0.0.1.magento.root]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{2AE16FDD-21E5-4039-8B7E-9B6E63F5988B}"
+      DTS:ObjectName="127.0.0.1.magento.root">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=127.0.0.1;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{82E2DD4A-400A-428C-8DFD-D7F458B5E231}"
+      DTS:ObjectName="LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-BADT8MI8\SQLEXPRESS;User ID=sa;Initial Catalog=NanoDW;Provider=SQLNCLI11.1;Auto Translate=False;Application Name=SSIS-Package1-{82E2DD4A-400A-428C-8DFD-D7F458B5E231}LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAp0ljuzNgPUi0QYF/FSteagAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADBJ9s/NnipICdN1HgYbR4kakrjZfrAJeCWmn/KuuIfXwAAAAAOgAAAAAIAACAAAABKfL2tuzCh+p+IXFlNucF2JbHVhI8oKEPw0RGENs80SCAAAAC7HqqWlFuLxDj4APc3oGvUljPTldHi+AmBIYdhMfU/50AAAABXOAdawDBMSxvuVXafZVTq32fcrqzDjgy8636s/9CXXO7/lhqGpK3vbS8YhRmmTLSuFTumJsP0OygC5khO4ZZN</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{208B08DC-9885-4399-B195-E6B037B1BB15}"
+      DTS:ObjectName="LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-BADT8MI8\SQLEXPRESS;User ID=sa;Initial Catalog=NanoDW;Provider=SQLNCLI11.1;Auto Translate=False;Application Name=SSIS-Package1-{208B08DC-9885-4399-B195-E6B037B1BB15}LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa 1;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAp0ljuzNgPUi0QYF/FSteagAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAqBkjMACGIOvUo1eRfjPrzW8wSQGcrf9MZLV4TZiHzNgAAAAAOgAAAAAIAACAAAACKCn2uozlMgMx8XSnC2kUOPoc1kg43bNG36b8Y2yZ4VyAAAADBkQ9L9QTfZtkftQeXYRo9yNsQJLXqCbdb4ADxpl28ikAAAAAJU4ijOI/c2RfgBmU+f7s97zAiHWxdem6E2HOMCbEQ7GMScVlukX0iHGtKxn6qLjAp6fS/lCKt14LDpNjFe3kQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa 2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6383E97F-ABB7-4C8E-8C42-8CE4F44561C7}"
+      DTS:ObjectName="LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-BADT8MI8\SQLEXPRESS;User ID=sa;Initial Catalog=NanoDW;Provider=SQLNCLI11.1;Auto Translate=False;Application Name=SSIS-Package1-{6383E97F-ABB7-4C8E-8C42-8CE4F44561C7}LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAp0ljuzNgPUi0QYF/FSteagAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAakFecU63dydG6TH/fN1Qtj9wDN9qDfBMekdn+TnKObAAAAAAOgAAAAAIAACAAAAADslCP0Oc/3FDrPUSIv8ifEjv8GOsgU1wy+N6MliihrCAAAAB6D4prEnR1NMwWfSukuciMmtMXQKdbIzsIYHoFk2nEV0AAAAB7MGTXZmreT2PEnKh2NFE/xNoesIVCRG+sSScLYW6GUihne4FGdto56ESKU+kMR/aOsL/EsCJJtwHidL0fI61g</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.publicidadDW.sa]"
+      DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5"
+      DTS:DTSID="{47E88EEC-8E76-4F90-9670-2F4F27B224C9}"
+      DTS:ObjectName="LAPTOP-BADT8MI8\SQLEXPRESS.publicidadDW.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=EMILIO\SQLEXPRESS;Initial Catalog=publicidadDW;Integrated Security=True;Encrypt=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[magento]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{07B3388A-3D27-45C4-B1F0-9A816625675F}"
+      DTS:ObjectName="magento">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NanoDW]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{EAEAC4C6-CE9C-444F-A334-43F34AEE58D6}"
+      DTS:ObjectName="NanoDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-Package1-{EAEAC4C6-CE9C-444F-A334-43F34AEE58D6}localhost.NanoDW;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB.NANODW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D2077B47-6610-4317-A2C0-980F0B10F8F9}"
+      DTS:ObjectName="OLEDB.NANODW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{D2077B47-6610-4317-A2C0-980F0B10F8F9}localhost.NanoDW1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Limpia Categoria_Producto"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{2F63D794-1E77-4CFE-8C8A-09254AC2A695}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpia Categoria_Producto"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{82E2DD4A-400A-428C-8DFD-D7F458B5E231}"
+          SQLTask:SqlStatementSource="DELETE FROM catalog_category_product&#xA;DBCC CHECKIDENT ('DimCategoria', RESEED, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpia DimCategoria"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D3630223-07F2-4A08-8CCD-21DC83B71B66}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpia DimCategoria"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{82E2DD4A-400A-428C-8DFD-D7F458B5E231}"
+          SQLTask:SqlStatementSource="DELETE FROM DimCategoria&#xA;DBCC CHECKIDENT ('DimCategoria', RESEED, 0);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado Categoria_Producto"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0632D071-5E8C-4583-AFB4-72C7051790C3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado Categoria_Producto"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado Categoria_Producto\Conversion de Datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de Datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input].Columns[category_id]"
+                      cachedDataType="i8"
+                      cachedName="category_id"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[category_id]" />
+                    <inputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input].Columns[product_id]"
+                      cachedDataType="i8"
+                      cachedName="product_id"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input].Columns[position]"
+                      cachedDataType="i4"
+                      cachedName="position"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[position]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of category_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of category_id]"
+                      name="Copy of category_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[category_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of product_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of product_id]"
+                      name="Copy of product_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[product_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of position]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output].Columns[Copy of position]"
+                      name="Copy of position"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[position]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Guardar Nueva Categoria"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[catalog_category_product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].Columns[category_id]"
+                      cachedDataType="i8"
+                      cachedName="category_id"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[category_id]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[category_id]" />
+                    <inputColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].Columns[product_id]"
+                      cachedDataType="i8"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].Columns[position]"
+                      cachedDataType="i4"
+                      cachedName="position"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[position]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[position]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[category_id]"
+                      dataType="i4"
+                      name="category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[position]"
+                      dataType="i4"
+                      name="position" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado Categoria_Producto\Magento"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Magento"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT *
+FROM   magento.catalog_category_product</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado Categoria_Producto\Magento.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[127.0.0.1.magento.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[127.0.0.1.magento.root]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[entity_id]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]"
+                      name="entity_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[category_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[category_id]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[category_id]"
+                      name="category_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[product_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[product_id]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[position]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[position]"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].Columns[position]"
+                      name="position"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[entity_id]"
+                      dataType="i4"
+                      name="entity_id" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[category_id]"
+                      dataType="i8"
+                      name="category_id" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[product_id]"
+                      dataType="i8"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[position]"
+                      dataType="i4"
+                      name="position" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[entity_id]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[entity_id]"
+                      name="entity_id" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[category_id]"
+                      dataType="i8"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[category_id]"
+                      name="category_id" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[product_id]"
+                      dataType="i8"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[position]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[position]"
+                      name="position" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado Categoria_Producto.Paths[Data Conversion Output]"
+              endId="Package\Llenado Categoria_Producto\Guardar Nueva Categoria.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado Categoria_Producto\Conversion de Datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado Categoria_Producto.Paths[Salida de origen de ADO NET]"
+              endId="Package\Llenado Categoria_Producto\Conversion de Datos.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Llenado Categoria_Producto\Magento.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Llenado DimCategoria"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2F13BFA5-8A33-431B-B435-643E198DE3FF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Llenado DimCategoria">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Llenado DimCategoria\Actualizar Categoria"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Actualizar Categoria"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC ActualizarCategoria ?,?,?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado DimCategoria\Actualizar Categoria.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].Columns[CategoriaKey]"
+                      cachedDataType="i4"
+                      cachedName="CategoriaKey"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].ExternalColumns[@CategoriaKey]"
+                      lineageId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[CategoriaKey]" />
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].Columns[entity_id]"
+                      cachedDataType="i8"
+                      cachedName="entity_id"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].ExternalColumns[@CategoriaID]"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]" />
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].Columns[newname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newname"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].ExternalColumns[@nombreCategoria]"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newname]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].ExternalColumns[@CategoriaKey]"
+                      dataType="i4"
+                      name="@CategoriaKey">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].ExternalColumns[@CategoriaID]"
+                      dataType="i4"
+                      name="@CategoriaID">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input].ExternalColumns[@nombreCategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="@nombreCategoria">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado DimCategoria\Actualizar Categoria.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado DimCategoria\Actualizar Categoria.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Actualizar Categoria.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Actualizar Categoria.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Actualizar Categoria.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado DimCategoria\Busqueda de categoria si existe"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Busqueda de categoria si existe"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM DimCategoria WHERE Activo =1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT * FROM DimCategoria WHERE Activo =1) [refTable]
+where [refTable].[CategoriaID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CategoriaKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CategoriaID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombreCategoria" dataType="DT_STR" length="255" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="FechaActualizacion" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Activo" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newentity_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Inputs[Lookup Input].Columns[newentity_id]"
+                      cachedDataType="i4"
+                      cachedName="newentity_id"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newentity_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CategoriaID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[FechaActualizacion]"
+                      name="FechaActualizacion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FechaActualizacion</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[Activo]"
+                      name="Activo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Activo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[CategoriaKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output].Columns[CategoriaKey]"
+                      name="CategoriaKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CategoriaKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado DimCategoria\Conversion de Datos"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Conversion de Datos"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Llenado DimCategoria\Conversion de Datos.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Conversion de Datos.Inputs[Data Conversion Input].Columns[entity_id]"
+                      cachedDataType="i8"
+                      cachedName="entity_id"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]"
+                      name="entity_id" />
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Conversion de Datos.Inputs[Data Conversion Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="name"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      name="name" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newentity_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newentity_id]"
+                      name="newentity_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newname]"
+                      name="newname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Conversion de Datos.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado DimCategoria\Guardar Nueva Categoria"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Guardar Nueva Categoria"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimCategoria]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-BADT8MI8\SQLEXPRESS.NanoDW.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].Columns[newname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="newname"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[nombreCategoria]"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newname]" />
+                    <inputColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].Columns[newentity_id]"
+                      cachedDataType="i4"
+                      cachedName="newentity_id"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[CategoriaID]"
+                      lineageId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output].Columns[newentity_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[FechaActualizacion]"
+                      dataType="dbTimeStamp"
+                      name="FechaActualizacion" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[Activo]"
+                      dataType="bool"
+                      name="Activo" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[CategoriaKey]"
+                      dataType="i4"
+                      name="CategoriaKey" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[CategoriaID]"
+                      dataType="i4"
+                      name="CategoriaID" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input].ExternalColumns[nombreCategoria]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="nombreCategoria" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Llenado DimCategoria\Magento"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Magento"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT entity_id,name FROM magento.catalog_category_flat_store_1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Llenado DimCategoria\Magento.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[127.0.0.1.magento.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[127.0.0.1.magento.root]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[entity_id]"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[entity_id]"
+                      name="entity_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[name]"
+                      length="255"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[entity_id]"
+                      dataType="i8"
+                      name="entity_id" />
+                    <externalMetadataColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="255"
+                      name="name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[entity_id]"
+                      dataType="i8"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[entity_id]"
+                      name="entity_id" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Llenado DimCategoria\Magento.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Llenado DimCategoria.Paths[Data Conversion Output]"
+              endId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Llenado DimCategoria\Conversion de Datos.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Llenado DimCategoria.Paths[Lookup Match Output]"
+              endId="Package\Llenado DimCategoria\Actualizar Categoria.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Llenado DimCategoria.Paths[Lookup No Match Output]"
+              endId="Package\Llenado DimCategoria\Guardar Nueva Categoria.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Llenado DimCategoria\Busqueda de categoria si existe.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Llenado DimCategoria.Paths[Salida de origen de ADO NET]"
+              endId="Package\Llenado DimCategoria\Conversion de Datos.Inputs[Data Conversion Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Llenado DimCategoria\Magento.Outputs[Salida de origen de ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{424648EB-469D-4A35-8566-6FCEF89358DD}"
+      DTS:From="Package\Limpia DimCategoria"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Llenado DimCategoria" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{68402BC0-D6CD-491D-A62B-E120C5C72745}"
+      DTS:From="Package\Limpia Categoria_Producto"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Llenado Categoria_Producto" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="212,43"
+          Id="Package\Limpia Categoria_Producto"
+          TopLeft="41.2499986030162,132.649121672631" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Limpia DimCategoria"
+          TopLeft="101,48" />
+        <NodeLayout
+          Size="223,43"
+          Id="Package\Llenado Categoria_Producto"
+          TopLeft="214.083324895551,208.578945693134" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Llenado DimCategoria"
+          TopLeft="347.624983096495,118.421050381587" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="192,90">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="249.624983096495,28.421050381587"
+              Start="0,0"
+              End="249.624983096495,20.921050381587">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.2105251907935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.2105251907935"
+                    Point2="0,14.2105251907935"
+                    Point3="4,14.2105251907935" />
+                  <mssgle:LineSegment
+                    End="245.624983096495,14.2105251907935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="245.624983096495,14.2105251907935"
+                    Point2="249.624983096495,14.2105251907935"
+                    Point3="249.624983096495,18.2105251907935" />
+                  <mssgle:LineSegment
+                    End="249.624983096495,20.921050381587" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="147.249998603016,175.315788339297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="178.499992959202,33.2631573538371"
+              Start="0,0"
+              End="178.499992959202,25.7631573538371">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.6315786769186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.6315786769186"
+                    Point2="0,16.6315786769186"
+                    Point3="4,16.6315786769186" />
+                  <mssgle:LineSegment
+                    End="174.499992959202,16.6315786769186" />
+                  <mssgle:CubicBezierSegment
+                    Point1="174.499992959202,16.6315786769186"
+                    Point2="178.499992959202,16.6315786769186"
+                    Point3="178.499992959202,20.6315786769186" />
+                  <mssgle:LineSegment
+                    End="178.499992959202,25.7631573538371" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Llenado Categoria_Producto">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="201,43"
+          Id="Package\Llenado Categoria_Producto\Guardar Nueva Categoria"
+          TopLeft="135.750001620501,235.473685999739" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Llenado Categoria_Producto\Conversion de Datos"
+          TopLeft="330.595223539996,64.6307450933725" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Llenado Categoria_Producto\Magento"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package\Llenado Categoria_Producto.Paths[Salida de origen de ADO NET]"
+          TopLeft="182,83.3153725466862">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="148.595223539996,0"
+              Start="0,0"
+              End="141.095223539996,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="141.095223539996,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado Categoria_Producto.Paths[Data Conversion Output]"
+          TopLeft="421.595223539996,106.630745093372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-185.178555252829,128.842940906366"
+              Start="0,0"
+              End="-185.178555252829,121.342940906366">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.4214704531832" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.4214704531832"
+                    Point2="0,64.4214704531832"
+                    Point3="-4,64.4214704531832" />
+                  <mssgle:LineSegment
+                    End="-181.178555252829,64.4214704531832" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-181.178555252829,64.4214704531832"
+                    Point2="-185.178555252829,64.4214704531832"
+                    Point3="-185.178555252829,68.4214704531832" />
+                  <mssgle:LineSegment
+                    End="-185.178555252829,121.342940906366" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado Categoria_Producto\Guardar Nueva Categoria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado Categoria_Producto\Magento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Llenado DimCategoria">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Llenado DimCategoria\Conversion de Datos"
+          TopLeft="361.845221919495,20.1570590936336" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Llenado DimCategoria\Guardar Nueva Categoria"
+          TopLeft="167,191" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Llenado DimCategoria\Busqueda de categoria si existe"
+          TopLeft="332.748000998021,111.526314564937" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Llenado DimCategoria\Magento"
+          TopLeft="91.2499983794992,15.5263140002611" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Llenado DimCategoria\Actualizar Categoria"
+          TopLeft="485.5,195.5" />
+        <EdgeLayout
+          Id="Package\Llenado DimCategoria.Paths[Salida de origen de ADO NET]"
+          TopLeft="213.249998379499,38.8416865469474">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="148.595223539996,0"
+              Start="0,0"
+              End="141.095223539996,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="141.095223539996,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado DimCategoria.Paths[Lookup No Match Output]"
+          TopLeft="412.414667664688,153.526314564937">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-142.914667664688,37.473685435063"
+              Start="0,0"
+              End="-142.914667664688,29.973685435063">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.1415229399494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.1415229399494"
+                    Point2="0,15.1415229399494"
+                    Point3="-4,15.1415229399494" />
+                  <mssgle:LineSegment
+                    End="-138.914667664688,15.1415229399494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-138.914667664688,15.1415229399494"
+                    Point2="-142.914667664688,15.1415229399494"
+                    Point3="-142.914667664688,19.1415229399494" />
+                  <mssgle:LineSegment
+                    End="-142.914667664688,29.973685435063" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.263720551094,20.1415229399494,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado DimCategoria.Paths[Lookup Match Output]"
+          TopLeft="488.081334331354,153.526314564937">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="86.4186656686457,41.973685435063"
+              Start="0,0"
+              End="86.4186656686457,34.473685435063">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9597816043619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.9597816043619"
+                    Point2="0,16.9597816043619"
+                    Point3="4,16.9597816043619" />
+                  <mssgle:LineSegment
+                    End="82.4186656686457,16.9597816043619" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.4186656686457,16.9597816043619"
+                    Point2="86.4186656686457,16.9597816043619"
+                    Point3="86.4186656686457,20.9597816043619" />
+                  <mssgle:LineSegment
+                    End="86.4186656686457,34.473685435063" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-4.98205388442715,21.9597816043619,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Llenado DimCategoria.Paths[Data Conversion Output]"
+          TopLeft="451.546611458758,62.1570590936336">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.3692554713034"
+              Start="0,0"
+              End="0,41.8692554713034">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.8692554713034" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado DimCategoria\Guardar Nueva Categoria">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado DimCategoria\Magento">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Llenado DimCategoria\Busqueda de categoria si existe">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">true</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
