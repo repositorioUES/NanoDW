@@ -97,5 +97,93 @@ CREATE TABLE Parametros(
 	NombreParametro varchar(25) not null,
 	ValorParametro varchar(100) not null
 )
+go
 
+
+CREATE TABLE FactCompras (
+	ProductoKey int not null foreign key references DimProducto(ProductoKey),
+	StockMinimo int not null default (0),
+	StockTienda int not null default (0),
+	StockTotal int not null default (0),
+	FechaSnapshot datetime default getdate()
+)
+go
+
+--Tabla auxiliar para realizar el Snapshot
+create table AuxSnapshot(
+	ProductoId int not null,
+	StockMinimo int not null default (0),
+	StockTienda int not null default (0),
+	StockTotal int not null default (0),
+)
+go
+
+CREATE TABLE DimCampaniaPublicitaria(
+	CampaniaPublicitariaKey int NOT NULL primary key IDENTITY(1,1),
+	CampaniaPublicitariaID int NOT NULL,
+	nombre_campania varchar(255) NOT NULL,
+	tipo_publicidad varchar(255) NOT NULL,
+	medio_publicidad varchar(255) NOT NULL,
+	duracion_publicidad varchar(255) NOT NULL,
+	fecha_inicio date NOT NULL,
+	fecha_finalizacion date NOT NULL,
+	costo_total decimal(10, 2) NOT NULL,
+	FechaActualizacion datetime NOT NULL default getdate(),
+	Activo bit not null default 1
+) 
+GO
+
+CREATE TABLE DimCategoria(
+	CategoriaKey int NOT NULL primary key IDENTITY(1,1),
+	CategoriaID int NOT NULL,
+	nombreCategoria varchar(255) NOT NULL,
+	FechaActualizacion datetime not null default getdate(),
+	Activo bit not null default 1
+) 
+GO
+
+CREATE TABLE DimRedes(
+	RedesKey int NOT NULL primary key IDENTITY(1,1),
+	RedesID int NOT NULL,
+	nombre_red_social varchar(255) NOT NULL,
+	Activo bit not null default 1,
+	FechaActualizacion datetime NOT NULL default getdate()
+) 
+GO
+
+CREATE TABLE FactPublicidad(
+	CategoriaKey int not null foreign key references DimCategoria(CategoriaKey),
+	ProductoKey int not null foreign key references DimProducto(ProductoKey),
+	RedesKey int not null foreign key references DimRedes(RedesKey),
+	CampaniaPublicitariaKey int not null foreign key references DimCampaniaPublicitaria(CampaniaPublicitariaKey),
+	alcance int NOT NULL,
+	frecuencia int NOT NULL,
+	clics int NOT NULL,
+	conversion int NOT NULL,
+	ingresos_generados int NOT NULL,
+	CPM decimal(10, 2) NOT NULL,
+	CPC decimal(10, 2) NOT NULL,
+	CTR decimal(10, 2) NOT NULL,
+	date_key int NOT NULL,
+	costo_total decimal(10, 2) NOT NULL
+) 
+go
+
+CREATE TABLE AuxSnapshotPub(
+	codigo_publicidad int NOT NULL,
+	alcance int NOT NULL,
+	frecuencia int NOT NULL,
+	clics int NOT NULL,
+	conversion int NOT NULL,
+	ingresos_generados int NOT NULL,
+	categoria_ïd int NOT NULL,
+	nombre_red_social varchar(255) NOT NULL,
+	costo_total decimal(10, 2) NOT NULL
+)
+
+CREATE TABLE catalog_category_product(
+	category_id int NOT NULL,
+	product_id int NOT NULL,
+	position int NOT NULL
+)
 

@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="76"
-  DTS:VersionGUID="{9DC7569E-8750-4754-9339-714E1B0502B1}">
+  DTS:VersionBuild="82"
+  DTS:VersionGUID="{C9C80FE6-A858-441F-AC27-19752C5C366E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,12 +23,7 @@
       DTS:ObjectName="magento">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="server=localhost;uid=root;Driver={MySQL ODBC 9.0 ANSI Driver};database=magento;db=magento;no_schema=1;port=3306;user=root;">
-          <DTS:Password
-            DTS:Name="pwd"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADXLfm46NCKPGi1dv9Yx7eHBs+KITdFZH+Sx5bTqY5ArAAAAAAOgAAAAAIAACAAAACNroVN7KOSdbXpaFByqd32GR8GvvfRy18SBkkz+QIZhxAAAAA/5ov3qX9ZXcygB8qrqDWRQAAAAArYDysbNA2dV4mnF66AnT2lz01Ad+fuOsuc0A5kZHczCF7ItRPMRtYclbtRsv0w1njXPfao6/XBBM5035nMwF8</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="uid=root;Dsn=MagentoDB;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -38,7 +33,7 @@
       DTS:ObjectName="NanoDW">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-Package1-{903F4188-1EDA-420A-8480-E99A06F9B0AF}localhost.NanoDW;" />
+          DTS:ConnectionString="Data Source=DESKTOP-00PNH2J\SQLEXPRESS;Initial Catalog=NanoDW;Integrated Security=True;Application Name=SSIS-Package1-{903F4188-1EDA-420A-8480-E99A06F9B0AF}localhost.NanoDW;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -50,7 +45,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{4ECCF973-D2DD-4A60-B119-D1510A3A862D}localhost.NanoDW1;" />
+          DTS:ConnectionString="Data Source=DESKTOP-00PNH2J\SQLEXPRESS;Initial Catalog=NanoDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{4ECCF973-D2DD-4A60-B119-D1510A3A862D}localhost.NanoDW1;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1193,15 +1188,15 @@ FROM magento.catalog_category_product categoriaproducto
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="236,42.6666666666667"
+          Size="236,43"
           Id="Package\Delete DimProducto en NanoDW"
           TopLeft="61.8749972339721,41.7368416470009" />
         <NodeLayout
-          Size="196.666666666667,42.6666666666667"
+          Size="200,42"
           Id="Package\Llenado de DimProducto"
-          TopLeft="383.624983096495,210.421050381587" />
+          TopLeft="382.624983096495,209.421050381587" />
         <NodeLayout
-          Size="200.666666666667,42.6666666666667"
+          Size="201,43"
           Id="Package\Reiniciar autoincremental"
           TopLeft="208.749990668148,121.105261828183" />
         <EdgeLayout
@@ -1240,30 +1235,30 @@ FROM magento.catalog_category_product categoriaproducto
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="309.083324001481,163.77192849485">
+          TopLeft="309.249990668148,164.105261828183">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="172.874992428347,46.6491218867372"
+              EndConnector="173.374992428347,45.315788553404"
               Start="0,0"
-              End="172.874992428347,39.1491218867372">
+              End="173.374992428347,37.815788553404">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.3245609433686" />
+                    End="0,18.657894276702" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.3245609433686"
-                    Point2="0,23.3245609433686"
-                    Point3="4,23.3245609433686" />
+                    Point1="0,18.657894276702"
+                    Point2="0,22.657894276702"
+                    Point3="4,22.657894276702" />
                   <mssgle:LineSegment
-                    End="168.874992428347,23.3245609433686" />
+                    End="169.374992428347,22.657894276702" />
                   <mssgle:CubicBezierSegment
-                    Point1="168.874992428347,23.3245609433686"
-                    Point2="172.874992428347,23.3245609433686"
-                    Point3="172.874992428347,27.3245609433686" />
+                    Point1="169.374992428347,22.657894276702"
+                    Point2="173.374992428347,22.657894276702"
+                    Point3="173.374992428347,26.657894276702" />
                   <mssgle:LineSegment
-                    End="172.874992428347,39.1491218867372" />
+                    End="173.374992428347,37.815788553404" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1281,23 +1276,23 @@ FROM magento.catalog_category_product categoriaproducto
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="178.666666666667,42.6666666666667"
+          Size="179,43"
           Id="Package\Llenado de DimProducto\Conversion de Datos"
           TopLeft="361.845221919495,20.1570590936336" />
         <NodeLayout
-          Size="190.666666666667,42.6666666666667"
+          Size="191,43"
           Id="Package\Llenado de DimProducto\Actualizar DimProducto"
           TopLeft="558.035689339575,199.724308584009" />
         <NodeLayout
-          Size="202.666666666667,42.6666666666667"
+          Size="203,43"
           Id="Package\Llenado de DimProducto\Insercion en DimProducto"
           TopLeft="220.722219820652,200.705920878027" />
         <NodeLayout
-          Size="228,42.6666666666667"
+          Size="228,43"
           Id="Package\Llenado de DimProducto\Busqueda de producto si existe"
           TopLeft="332.748000998021,111.526314564937" />
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
+          Size="121,43"
           Id="Package\Llenado de DimProducto\Magento"
           TopLeft="91.2499983794992,15.5263140002611" />
         <EdgeLayout
