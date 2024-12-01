@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="FactVenta"
   DTS:PackageType="5"
-  DTS:VersionBuild="124"
-  DTS:VersionGUID="{BBD47C8D-6206-46A8-AED6-767FBFFC242B}">
+  DTS:VersionBuild="125"
+  DTS:VersionGUID="{47EFC412-A3A6-4F2E-90FC-36E05C049BF3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACOht2fv2wjrAA7FJpTBSSTyVWjdqaLM5jziNg5uZZLoQAAAAAOgAAAAAIAACAAAAAdbtB3+Q5vf5ZMoUMRz9R3P21Fja6csmFRWxzVbdqT7BAAAAC7GnooydxXSgVd8qocMSnIQAAAAFApt7p/G6Uc9hwD0S6+LmsBEd5hn/cIsiTOo1kuR0cCf8TF301ELNAtxRtY/9I33amB8uXUnFNlAZS/U897PLc</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADDSmivB3bOlhC9MJXRc0WHp/rZ7HIwWjQgEYhEUKjVPQAAAAAOgAAAAAIAACAAAAAsxHh6N2wEkQXSvcZ4mmhcNPS/cB+pJfjmzaPxv3ncWBAAAADiYSRX5orXgW86fq53Wkt/QAAAAKE18trZX4pmEnJZCdKH47MAGwA8aCdLnc9TbTKh6p1g4bAq+Mh5fkcWq54Mj7rheRfmH+fRwtsriBjLVxqsKJM</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1904,33 +1904,33 @@ FROM magento.sales_invoice_item sii
         <NodeLayout
           Size="184,42.4"
           Id="Package\Llenado de FactVenta"
-          TopLeft="194.999991282821,176.52631385125" />
+          TopLeft="259.999987731378,173.05964720869" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="222.458326935147,113.140350103406">
+          TopLeft="222.324993601814,112.873683436739">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="64.5416643476733,63.3859637478437"
+              EndConnector="129.674994129564,60.1859637719509"
               Start="0,0"
-              End="64.5416643476733,55.8859637478437">
+              End="129.674994129564,52.6859637719509">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.6929818739219" />
+                    End="0,26.0929818859754" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,27.6929818739219"
-                    Point2="0,31.6929818739219"
-                    Point3="4,31.6929818739219" />
+                    Point1="0,26.0929818859754"
+                    Point2="0,30.0929818859754"
+                    Point3="4,30.0929818859754" />
                   <mssgle:LineSegment
-                    End="60.5416643476733,31.6929818739219" />
+                    End="125.674994129564,30.0929818859754" />
                   <mssgle:CubicBezierSegment
-                    Point1="60.5416643476733,31.6929818739219"
-                    Point2="64.5416643476733,31.6929818739219"
-                    Point3="64.5416643476733,35.6929818739219" />
+                    Point1="125.674994129564,30.0929818859754"
+                    Point2="129.674994129564,30.0929818859754"
+                    Point3="129.674994129564,34.0929818859754" />
                   <mssgle:LineSegment
-                    End="64.5416643476733,55.8859637478437" />
+                    End="129.674994129564,52.6859637719509" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1941,30 +1941,30 @@ FROM magento.sales_invoice_item sii
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 1]"
-          TopLeft="286.999991282821,218.92631385125">
+          TopLeft="351.999987731378,215.45964720869">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="209.008325269115,69.8105250837399"
+              EndConnector="144.008328820558,73.2771917262999"
               Start="0,0"
-              End="209.008325269115,62.3105250837399">
+              End="144.008328820558,65.7771917262999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.90526254187" />
+                    End="0,32.6385958631499" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.90526254187"
-                    Point2="0,34.90526254187"
-                    Point3="4,34.90526254187" />
+                    Point1="0,32.6385958631499"
+                    Point2="0,36.6385958631499"
+                    Point3="4,36.6385958631499" />
                   <mssgle:LineSegment
-                    End="205.008325269115,34.90526254187" />
+                    End="140.008328820558,36.6385958631499" />
                   <mssgle:CubicBezierSegment
-                    Point1="205.008325269115,34.90526254187"
-                    Point2="209.008325269115,34.90526254187"
-                    Point3="209.008325269115,38.90526254187" />
+                    Point1="140.008328820558,36.6385958631499"
+                    Point2="144.008328820558,36.6385958631499"
+                    Point3="144.008328820558,40.6385958631499" />
                   <mssgle:LineSegment
-                    End="209.008325269115,62.3105250837399" />
+                    End="144.008328820558,65.7771917262999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2371,7 +2371,7 @@ FROM magento.sales_invoice_item sii
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2381,7 +2381,7 @@ FROM magento.sales_invoice_item sii
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

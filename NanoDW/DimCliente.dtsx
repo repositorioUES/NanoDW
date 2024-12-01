@@ -11,8 +11,8 @@
   DTS:LocaleID="22538"
   DTS:ObjectName="DimCliente"
   DTS:PackageType="5"
-  DTS:VersionBuild="75"
-  DTS:VersionGUID="{230B0F57-CC54-4893-BEFF-AF0CE791C73E}">
+  DTS:VersionBuild="77"
+  DTS:VersionGUID="{1B99FDCB-8028-44A5-B0CA-2875E8432A79}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,7 +27,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADuWq3kO7ylNGQp6gPa+APIQoPGyrq2Js5LowLHo3Y+HAAAAAAOgAAAAAIAACAAAAAuwXqk4ovpzgf/cPAIUFywpLLcc9e6QKVlLA/HIB62jhAAAABxkN+8kLRScbNfgjYxSQvTQAAAANDM5axV7xa1Y8cBkfBSn5ToP3CutQKZAYshYooG3ZKRX7sR4v1BlGmoR967IwPV/MXljOs6zUmut+BPBsCByr0</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAo0/dMZIsQECT1ReJzjBIzgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABcEx6p0pLKhY2yaWD1+ezRLe0UsrzDDkb93pd984vhRQAAAAAOgAAAAAIAACAAAADmC2WHUUnRkD+M81eHZoKLcYAZ7JVC8b3XWeB0NtaEixAAAAAN0ccTERFBOerqbyiyuUBJQAAAALBkds+3+gkWm3rjR3Xci4SGg7FYx/T0uHiWdDeVk56GmL/UK950IhA1fhkP5iwwSj/y836h00KKInRiEN7/CCk</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1323,15 +1323,15 @@ FROM magento.customer_grid_flat gf
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="218.666666666667,42.6666666666667"
+          Size="218.4,42.4"
           Id="Package\Delete DimCliente en NanoDW"
           TopLeft="225.312489927746,31.8157891243531" />
         <NodeLayout
-          Size="268,42.6666666666667"
+          Size="268,42.4"
           Id="Package\Fila bolsón para Clientes no registrados"
           TopLeft="201.249991003425,110.842104046134" />
         <NodeLayout
-          Size="188,42.6666666666667"
+          Size="188,42.4"
           Id="Package\Llenado de DimCliente"
           TopLeft="240.937489229256,191.921050524324" />
         <EdgeLayout
@@ -1387,23 +1387,23 @@ FROM magento.customer_grid_flat gf
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="177.333333333334,42.6666666666667"
+          Size="177.6,42.4"
           Id="Package\Llenado de DimCliente\Conversion de datos"
-          TopLeft="277.499987594784,36.263157496575" />
+          TopLeft="278.333320882586,35.396490835935" />
         <NodeLayout
-          Size="216,42.6666666666667"
+          Size="216,42.4"
           Id="Package\Llenado de DimCliente\busqueda de cliente si existe"
           TopLeft="263.124988237396,131.368419610232" />
         <NodeLayout
-          Size="193.333333333334,42.6666666666667"
+          Size="193.6,42.4"
           Id="Package\Llenado de DimCliente\Insercion en DimCliente"
           TopLeft="136.249993909151,237.421050024743" />
         <NodeLayout
-          Size="212,42.6666666666667"
+          Size="212,42.4"
           Id="Package\Llenado de DimCliente\Actualizacion de DimCliente"
           TopLeft="472.083312229564,240.538009054846" />
         <NodeLayout
-          Size="121.333333333334,42.6666666666667"
+          Size="119.2,41.6"
           Id="Package\Llenado de DimCliente\Magento"
           TopLeft="61.2499972619115,31.4736838649515" />
         <EdgeLayout
@@ -1480,18 +1480,18 @@ FROM magento.customer_grid_flat gf
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Llenado de DimCliente.Paths[Data Conversion Output]"
-          TopLeft="368.645821249423,78.9298241632417">
+          TopLeft="369.129154559991,77.796490835935">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,52.4385954469906"
+              EndConnector="0,53.571928774297"
               Start="0,0"
-              End="0,44.9385954469906">
+              End="0,46.071928774297">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.9385954469906" />
+                    End="0,46.071928774297" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1502,18 +1502,18 @@ FROM magento.customer_grid_flat gf
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Llenado de DimCliente.Paths[Salida de origen de ADO NET]"
-          TopLeft="182.583330595245,55.2017540140966">
+          TopLeft="180.449997261912,54.4350873504433">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="94.9166569995392,0"
+              EndConnector="97.8833236206745,0"
               Start="0,0"
-              End="87.4166569995392,0">
+              End="90.3833236206745,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="87.4166569995392,0" />
+                    End="90.3833236206745,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
